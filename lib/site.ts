@@ -12,7 +12,7 @@ export const SITE = {
 
 export const NAV_LINKS = [
   { href: '/academy', label: 'Academy' },
-  { href: '/programs', label: 'Programmes' },
+  { href: '/programs', label: 'Programs' },
   { href: '/fixtures', label: 'Fixtures' },
   { href: '/news', label: 'News' },
   { href: '/admissions', label: 'Admissions' },

@@ -7,7 +7,7 @@ Next.js 16 (App Router, Cache Components) + Tailwind v4. Built to the brand guid
 | Tech | Where |
 | --- | --- |
 | **GSAP + ScrollTrigger** | Pinned hero scene (`components/home/HeroPinned.tsx`), horizontal values track (`ValuesHorizontal.tsx`) |
-| **Framer Motion** (`motion/react`) | `useScroll`/`useTransform` word-by-word mission text, stacked programme cards, drawing timeline, menu & filters |
+| **Framer Motion** (`motion/react`) | `useScroll`/`useTransform` word-by-word mission text, stacked program cards, drawing timeline, menu & filters |
 | **CSS scroll-driven animations** | `animation-timeline: view()/scroll()` for reveals, header shrink, progress bar, image drift (see `app/globals.css`) |
 | **Lenis** | Inertia scrolling, driven from GSAP's ticker (`components/layout/SmoothScroll.tsx`) |
 
@@ -15,9 +15,22 @@ Everything respects `prefers-reduced-motion`.
 
 ## Navigation
 
-Two stacked headers, as in the original design: the fixed navy **main header** (menu, quick links, crest, search, call to action),
-and a white **sub-navigation** that sits under the opening section and then pins beneath the main header while you scroll. Its tabs
-jump to the sections of the current page and follow your position (`components/layout/SubNav.tsx`).
+Two stacked headers: the **main header** (80 px; menu with divider, quick links, crest on a solid navy tab, search / help / admissions icons) and a
+white **sub-navigation** (62 px) that sits under the opening section and then pins beneath the main header while you scroll. On the home page the
+main header starts transparent over the hero and turns solid as you scroll (a CSS scroll-driven animation). The sub-nav tabs jump to sections of the
+current page and follow your position (`components/layout/SubNav.tsx`, `lib/scroll.ts`).
+
+## Home page scenes
+
+| Scene | Tech |
+| --- | --- |
+| Full-bleed hero: darkened footage, monumental title, scroll button; scrolling clears the darkness, then a statement and mountain ridges rise | GSAP ScrollTrigger (pinned) |
+| Mission & Vision: one pinned stage, the words light up as you scroll, then hand over to the vision | Framer Motion `useScroll` / `useTransform` |
+| Values: pinned horizontal journey | GSAP ScrollTrigger |
+| Programs: left title, tall photo cards running off the right edge (arrows, swipe, drag); photos drift as they pass | native scroll-snap + CSS `animation-timeline: view(inline)` |
+| Legacy timeline, brand marquee, closing call to action | Framer Motion / CSS |
+
+Headings, navigation and buttons use Saira Extra Condensed (`--font-display` in `app/globals.css`); body copy uses Figtree.
 
 ## Pages
 

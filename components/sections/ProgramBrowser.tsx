@@ -23,7 +23,7 @@ export function ProgramBrowser() {
   return (
     <div>
       <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-        <div role="group" aria-label="Filter programmes by age group" className="no-scrollbar -mx-5 flex gap-2 overflow-x-auto px-5 sm:mx-0 sm:flex-wrap sm:px-0">
+        <div role="group" aria-label="Filter programs by age group" className="no-scrollbar -mx-5 flex gap-2 overflow-x-auto px-5 sm:mx-0 sm:flex-wrap sm:px-0">
           {FILTERS.map((f) => {
             const active = f.id === category;
             return (
@@ -42,19 +42,19 @@ export function ProgramBrowser() {
           })}
         </div>
         <label className="block lg:w-72">
-          <span className="sr-only">Search programmes</span>
+          <span className="sr-only">Search programs</span>
           <input
             type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search programmes"
+            placeholder="Search programs"
             className="w-full border-b-[3px] border-navy bg-transparent py-2.5 text-base font-semibold placeholder:font-normal placeholder:text-navy/45 focus:border-green focus:outline-none"
           />
         </label>
       </div>
 
       <p className="sr-only" aria-live="polite">
-        {programs.length} programme{programs.length === 1 ? '' : 's'} shown
+        {programs.length} program{programs.length === 1 ? '' : 's'} shown
       </p>
 
       <ul className="mt-12 border-t-[3px] border-navy">
@@ -70,12 +70,12 @@ export function ProgramBrowser() {
               className="border-b border-navy/15"
             >
               <Link href={`/programs/${p.slug}`} className="group grid gap-6 py-8 lg:grid-cols-[4rem_1fr_17rem_2rem] lg:items-center lg:gap-10 lg:py-10 xl:grid-cols-[4rem_1fr_20rem_2rem]">
-                <span className="display hidden text-4xl text-green lg:block">0{ACADEMY_PROGRAMS.indexOf(p) + 1}</span>
+                <span className="display hidden text-5xl text-green lg:block">0{ACADEMY_PROGRAMS.indexOf(p) + 1}</span>
                 <div className="lg:order-2">
                   <p className="text-xs font-extrabold uppercase tracking-label text-green">
                     {p.categoryLabel} · {p.ageRange}
                   </p>
-                  <h3 className="display mt-2 text-[clamp(1.6rem,3vw,2.6rem)] leading-[0.98]">{p.title}</h3>
+                  <h3 className="display mt-2 text-[clamp(2.1rem,3.8vw,3.4rem)] leading-[0.95]">{p.title}</h3>
                   <p className="mt-3 max-w-xl text-[0.95rem] leading-relaxed opacity-75">{p.summary}</p>
                 </div>
                 <div className="relative aspect-[16/10] overflow-hidden rounded-[4px] lg:order-3">
@@ -90,7 +90,7 @@ export function ProgramBrowser() {
         </AnimatePresence>
       </ul>
 
-      {programs.length === 0 && <p className="mt-12 text-lg opacity-70">No programmes match your search. Try a different age group or keyword.</p>}
+      {programs.length === 0 && <p className="mt-12 text-lg opacity-70">No programs match your search. Try a different age group or keyword.</p>}
     </div>
   );
 }

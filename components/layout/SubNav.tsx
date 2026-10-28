@@ -55,11 +55,11 @@ export function SubNav({ tabs, label }: { tabs: SubNavTab[]; label: string }) {
   }, [active]);
 
   return (
-    <div className="sticky top-[calc(var(--header-h)-1px)] z-40 h-[var(--subnav-h)] border-b border-navy/15 bg-white/92 text-navy backdrop-blur-md">
+    <div className="sticky top-[calc(var(--header-h)-1px)] z-40 h-[var(--subnav-h)] border-b border-navy/15 bg-white text-navy shadow-[0_10px_28px_rgba(18,30,52,0.08)]">
       <nav
         ref={nav}
         aria-label={label}
-        className="no-scrollbar gutter wrap relative flex h-full items-stretch overflow-x-auto sm:justify-center sm:gap-4"
+        className="no-scrollbar relative mx-auto flex h-full max-w-5xl items-stretch overflow-x-auto px-2 sm:justify-center sm:px-6"
       >
         {tabs.map((tab) => {
           const isActive = tab.id === active;
@@ -72,12 +72,12 @@ export function SubNav({ tabs, label }: { tabs: SubNavTab[]; label: string }) {
                 e.preventDefault();
                 scrollToId(tab.id);
               }}
-              className={`relative inline-flex shrink-0 items-center px-3 text-[0.8rem] font-extrabold uppercase tracking-[0.16em] transition-colors sm:px-5 sm:text-[0.88rem] ${
-                isActive ? 'text-navy' : 'text-navy/65 hover:text-teal'
+              className={`relative inline-flex shrink-0 items-center px-4 font-display text-[1.3rem] font-bold uppercase leading-none tracking-[0.02em] transition-colors sm:px-5 sm:text-[1.45rem] ${
+                isActive ? 'text-navy' : 'text-navy/80 hover:text-teal'
               }`}
             >
               {tab.label}
-              {isActive && <motion.span layoutId={underlineId} className="absolute inset-x-2 bottom-0 h-[3px] bg-alert" transition={{ type: 'spring', stiffness: 420, damping: 36 }} />}
+              {isActive && <motion.span layoutId={underlineId} className="absolute inset-x-0 bottom-0 h-1 bg-alert" transition={{ type: 'spring', stiffness: 420, damping: 36 }} />}
             </a>
           );
         })}

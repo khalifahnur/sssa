@@ -12,7 +12,7 @@ import { ACADEMY_PROGRAMS, BRAND_CONTACT, PLAYER_TESTIMONIALS } from '@/data/aca
 export const metadata: Metadata = pageMetadata({
   title: 'Admissions & contact — book a trial evaluation',
   description:
-    'Apply to St. Sebastian Sports Academy. Book a trial evaluation, ask about programmes for ages 8–21, and get in touch with the admissions team in Research Triangle Park, NC.',
+    'Apply to St. Sebastian Sports Academy. Book a trial evaluation, ask about programs for ages 8–21, and get in touch with the admissions team in Research Triangle Park, NC.',
   path: '/admissions',
   keywords: ['football academy admissions', 'book a trial', 'scholar athlete application', 'contact St. Sebastian'],
 });
@@ -25,15 +25,15 @@ const TABS = [
 ];
 
 const STEPS = [
-  { title: 'Tell us about your athlete', body: 'Share age, position, experience and the programme you are interested in using the form below.' },
+  { title: 'Tell us about your athlete', body: 'Share age, position, experience and the program you are interested in using the form below.' },
   { title: 'Trial evaluation', body: 'Our coaching team arranges an evaluation session so we can see your athlete in action.' },
   { title: 'Personal feedback', body: 'You receive a written assessment and a recommended pathway from the admissions team.' },
   { title: 'Join the academy', body: 'Accept your place and begin the journey from aspiration to achievement.' },
 ];
 
 const FAQS = [
-  { q: 'Which age groups can apply?', a: `We run programmes from ages 8 to 21: ${ACADEMY_PROGRAMS.map((p) => `${p.title} (${p.ageRange})`).join('; ')}.` },
-  { q: 'Is education part of every programme?', a: 'Our teen and scholar programmes integrate academic tutoring and accredited coursework alongside football. The Full-Time Pro & Scholar Pathway combines daily training with college-preparatory academics.' },
+  { q: 'Which age groups can apply?', a: `We run programs from ages 8 to 21: ${ACADEMY_PROGRAMS.map((p) => `${p.title} (${p.ageRange})`).join('; ')}.` },
+  { q: 'Is education part of every program?', a: 'Our teen and scholar programs integrate academic tutoring and accredited coursework alongside football. The Full-Time Pro & Scholar Pathway combines daily training with college-preparatory academics.' },
   { q: 'What is the coach-to-athlete ratio?', a: 'Ratios range from 1:10 in the Teen Competitive Academy to 1:8 for Youth, 1:6 for the Scholar Pathway and 1:1 for Elite Mastery sessions.' },
   { q: 'How do I book a trial?', a: 'Complete the trial request form on this page. The admissions team will contact you to arrange an evaluation date.' },
   { q: 'Where is the academy?', a: BRAND_CONTACT.address },
@@ -58,7 +58,7 @@ export default function AdmissionsPage() {
             Your place on the <Tail>team</Tail>
           </>
         }
-        intro="Book a trial evaluation, ask about a programme, or simply say hello. The admissions team replies to every enquiry."
+        intro="Book a trial evaluation, ask about a program, or simply say hello. The admissions team replies to every enquiry."
       />
       <SubNav label="On this page" tabs={TABS} />
 
@@ -70,7 +70,7 @@ export default function AdmissionsPage() {
           <ol className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {STEPS.map((s, i) => (
               <li key={s.title} className={`reveal reveal-${i + 1} border-t-[3px] border-navy pt-6`}>
-                <p className="display text-5xl text-green">0{i + 1}</p>
+                <p className="display text-6xl text-green">0{i + 1}</p>
                 <h3 className="mt-3 text-lg font-extrabold uppercase leading-tight tracking-wide">{s.title}</h3>
                 <p className="mt-3 opacity-75">{s.body}</p>
               </li>

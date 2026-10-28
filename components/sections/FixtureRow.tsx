@@ -14,12 +14,12 @@ export function FixtureRow({ fixture, href, tone = 'light' }: { fixture: Fixture
         }`}
       >
         <time dateTime={fixture.startsAt} className="text-center leading-none">
-          <span className="display block text-5xl sm:text-6xl">{fixture.dayNumber}</span>
+          <span className="display block text-6xl sm:text-7xl">{fixture.dayNumber}</span>
           <span className="mt-1 block text-[0.65rem] font-extrabold uppercase tracking-label text-green">{fixture.monthName.slice(0, 3)}</span>
         </time>
         <div>
           <p className="text-xs font-bold uppercase tracking-[0.14em] opacity-60">{fixture.competition}</p>
-          <h3 className="display mt-1 text-[clamp(1.35rem,2.6vw,2.2rem)] leading-[1]">{fixture.matchTitle}</h3>
+          <h3 className="display mt-1 text-[clamp(1.8rem,3.2vw,2.8rem)] leading-[0.98]">{fixture.matchTitle}</h3>
           <p className="mt-2 text-sm opacity-70">
             {fixture.kickoffTime} · {fixture.location}
           </p>

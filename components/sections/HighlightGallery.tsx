@@ -21,7 +21,7 @@ export function HighlightGallery() {
           {clip.category}
           <span className="rounded-[2px] bg-white/15 px-2 py-0.5 text-white">{clip.duration}</span>
         </p>
-        <h3 className={`display mt-2 leading-[1] ${big ? 'text-[clamp(1.4rem,2.8vw,2.4rem)]' : 'text-lg sm:text-xl'}`}>{clip.title}</h3>
+        <h3 className={`display mt-2 leading-[1] ${big ? 'text-[clamp(2rem,3.6vw,3.2rem)]' : 'text-2xl sm:text-3xl'}`}>{clip.title}</h3>
       </div>
     </button>
   );
@@ -47,13 +47,13 @@ export function HighlightGallery() {
               <p className="text-xs font-extrabold uppercase tracking-label text-green">
                 {active.category} · {active.date}
               </p>
-              <h3 className="display mt-3 text-2xl sm:text-4xl">{active.title}</h3>
+              <h3 className="display mt-3 text-4xl sm:text-6xl">{active.title}</h3>
               <p className="mt-2 text-sm opacity-60">{active.location}</p>
               <p className="mt-6 max-w-2xl text-lg leading-relaxed opacity-80">{active.tacticalNotes}</p>
               <dl className="mt-8 grid gap-6 border-t-[3px] border-navy pt-6 sm:grid-cols-3">
                 {active.keyStats.map((s) => (
                   <div key={s.label}>
-                    <dd className="display text-3xl text-teal">{s.value}</dd>
+                    <dd className="display text-5xl text-teal">{s.value}</dd>
                     <dt className="mt-1 text-xs font-bold uppercase tracking-[0.12em] opacity-60">{s.label}</dt>
                   </div>
                 ))}

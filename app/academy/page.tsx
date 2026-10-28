@@ -46,7 +46,7 @@ export default function AcademyPage() {
       >
         <ButtonLink href="/admissions#trial">Book a trial</ButtonLink>
         <ButtonLink href="/programs" variant="ghost-light">
-          Programmes
+          Programs
         </ButtonLink>
       </PageHero>
       <SubNav label="On this page" tabs={TABS} />
@@ -73,7 +73,7 @@ export default function AcademyPage() {
             <Tail>promise</Tail>
           </h2>
           <div className="reveal reveal-2">
-            <p className="display text-[clamp(2.6rem,7vw,6.2rem)] text-green">Champions for life</p>
+            <p className="display text-[clamp(3.4rem,9vw,8rem)] text-green">Champions for life</p>
             <p className="mt-6 max-w-xl text-lg leading-relaxed opacity-75">
               This slogan reflects our commitment to nurturing well-rounded individuals — not only exceptional athletes, but also strong leaders, responsible citizens, and impactful members of society.
             </p>

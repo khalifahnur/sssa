@@ -13,7 +13,7 @@ export function SiteFooter() {
         <div className="grid gap-14 lg:grid-cols-[1.3fr_1fr_1fr_1.2fr]">
           <div>
             <Crest variant="green" height={132} />
-            <p className="display mt-6 text-3xl text-white">
+            <p className="display mt-6 text-5xl text-white">
               Champions for <Tail>life</Tail>
             </p>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/65">
@@ -34,8 +34,8 @@ export function SiteFooter() {
             </ul>
           </nav>
 
-          <nav aria-label="Programmes">
-            <h2 className="text-xs font-extrabold uppercase tracking-label text-green">Programmes</h2>
+          <nav aria-label="Programs">
+            <h2 className="text-xs font-extrabold uppercase tracking-label text-green">Programs</h2>
             <ul className="mt-5 space-y-3">
               {ACADEMY_PROGRAMS.map((p) => (
                 <li key={p.id}>

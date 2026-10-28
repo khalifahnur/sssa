@@ -46,11 +46,11 @@ export function TrialForm() {
     return (
       <div role="status" className="border-l-[6px] border-green bg-mist p-8 sm:p-10">
         <p className="text-xs font-extrabold uppercase tracking-label text-green">Request received</p>
-        <p className="display mt-3 text-3xl">Thank you — we have your trial request.</p>
+        <p className="display mt-3 text-5xl">Thank you — we have your trial request.</p>
         <p className="mt-4 max-w-lg opacity-80">
           Keep this reference handy when the admissions team gets in touch to arrange the evaluation:
         </p>
-        <p className="display mt-4 text-2xl text-teal">{reference}</p>
+        <p className="display mt-4 text-4xl text-teal">{reference}</p>
         <button type="button" onClick={() => setReference(null)} className="mt-8 text-sm font-extrabold uppercase tracking-[0.12em] underline underline-offset-4 hover:text-teal">
           Send another request
         </button>
@@ -69,11 +69,11 @@ export function TrialForm() {
       <Field label="Athlete age" error={errors.athleteAge} hint="Between 6 and 23">
         {(p) => <input {...p} name="athleteAge" type="number" inputMode="numeric" min={6} max={23} placeholder="14" />}
       </Field>
-      <Field label="Programme" error={errors.programId}>
+      <Field label="Program" error={errors.programId}>
         {(p) => (
           <select {...p} name="programId" defaultValue={preselected}>
             <option value="" disabled>
-              Choose a programme
+              Choose a program
             </option>
             {ACADEMY_PROGRAMS.map((prog) => (
               <option key={prog.id} value={prog.id}>

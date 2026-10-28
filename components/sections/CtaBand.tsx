@@ -25,7 +25,7 @@ export function CtaBand({
         <div className="mt-10 flex flex-wrap gap-3">
           <ButtonLink href={href}>{cta}</ButtonLink>
           <ButtonLink href="/programs" variant="ghost-light">
-            Explore programmes
+            Explore programs
           </ButtonLink>
         </div>
       </div>

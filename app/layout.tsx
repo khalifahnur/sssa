@@ -1,5 +1,8 @@
 import type { Metadata, Viewport } from 'next';
 import '@fontsource-variable/figtree';
+import '@fontsource/saira-extra-condensed/600.css';
+import '@fontsource/saira-extra-condensed/700.css';
+import '@fontsource/saira-extra-condensed/800.css';
 import './globals.css';
 import { CrestSprite } from '@/components/brand/Crest';
 import { SiteHeader } from '@/components/layout/SiteHeader';

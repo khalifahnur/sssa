@@ -25,16 +25,17 @@ export function lockScroll(locked: boolean) {
 }
 
 /**
- * Smooth-scroll to a section id, landing it just below the two fixed bars. The clearance comes from the
- * page's `scroll-padding-top` (stack height + 1rem): Lenis reads it itself, so the fallback mirrors it.
+ * Smooth-scroll to a section id, landing it flush beneath the two fixed bars (stack height, the same
+ * clearance as the page's `scroll-padding-top`). The target is worked out from the real scroll position rather
+ * than Lenis's internal one, which can lag behind if the page was moved natively a moment earlier.
  */
 export function scrollToId(id: string) {
   const el = document.getElementById(id);
   if (!el) return;
+  const top = Math.max(0, el.getBoundingClientRect().top + window.scrollY - (stackHeight() - 1));
   if (lenis) {
-    lenis.scrollTo(el, { duration: 1.3 });
+    lenis.scrollTo(top, { duration: 1.3 });
   } else {
-    const top = el.getBoundingClientRect().top + window.scrollY - (stackHeight() + 16);
     window.scrollTo({ top, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
   }
   history.replaceState(null, '', `#${id}`);

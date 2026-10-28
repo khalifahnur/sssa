@@ -7,6 +7,8 @@
    ------------------------------------------------------------------ */
 @theme {
   --font-sans: "Figtree Variable", Arial, Helvetica, sans-serif;
+  /* Tall, squared condensed face used for headings, navigation and buttons */
+  --font-display: "Saira Extra Condensed", "Arial Narrow", Arial, sans-serif;
 
   --color-navy: #121e34;
   --color-navy-deep: #0b1424;
@@ -25,29 +27,23 @@
   --breakpoint-xs: 30rem;
 }
 
-/* Hero window clip, animated by GSAP (see components/home/HeroPinned.tsx) */
-@property --hw-t { syntax: "<percentage>"; inherits: false; initial-value: 44%; }
-@property --hw-r { syntax: "<percentage>"; inherits: false; initial-value: 6%; }
-@property --hw-b { syntax: "<percentage>"; inherits: false; initial-value: 10%; }
-@property --hw-l { syntax: "<percentage>"; inherits: false; initial-value: 6%; }
-@property --hw-radius { syntax: "<length>"; inherits: false; initial-value: 20px; }
-
 /* Two stacked bars: the fixed main header, then the page sub-navigation that pins beneath it.
    Kept as plain pixel values so GSAP can read them (see lib/scroll.ts). */
 :root {
-  --header-h: 64px;
-  --subnav-h: 56px;
-  --stack-h: 120px;
+  --header-h: 80px;
+  --subnav-h: 62px;
+  --stack-h: 142px;
 }
 @media (max-width: 639px) {
   :root {
-    --subnav-h: 48px;
-    --stack-h: 112px;
+    --header-h: 68px;
+    --subnav-h: 52px;
+    --stack-h: 120px;
   }
 }
 
 html {
-  scroll-padding-top: calc(var(--stack-h) + 1rem);
+  scroll-padding-top: calc(var(--stack-h) - 1px);
   -webkit-text-size-adjust: 100%;
 }
 
@@ -85,16 +81,17 @@ input[type="search"]::-webkit-search-decoration {
 
 /* ---------- Typography ---------- */
 @utility display {
-  font-weight: 800;
+  font-family: var(--font-display);
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.01em;
-  line-height: 0.9;
+  letter-spacing: 0.005em;
+  line-height: 0.92;
   text-wrap: balance;
 }
-@utility text-hero { font-size: clamp(3.2rem, 10.4vw, 10rem); }
-@utility text-mega { font-size: clamp(2.75rem, 8.4vw, 7.5rem); }
-@utility text-xl-display { font-size: clamp(2.1rem, 5.2vw, 4.5rem); }
-@utility text-lg-display { font-size: clamp(1.6rem, 3.2vw, 2.6rem); }
+@utility text-hero { font-size: clamp(4.6rem, 13vw, 13rem); }
+@utility text-mega { font-size: clamp(3.6rem, 10vw, 9.5rem); }
+@utility text-xl-display { font-size: clamp(3rem, 7vw, 6.2rem); }
+@utility text-lg-display { font-size: clamp(2.3rem, 4.4vw, 3.6rem); }
 @utility tracking-label { letter-spacing: 0.18em; }
 @utility outline-text {
   color: transparent;
@@ -113,6 +110,12 @@ input[type="search"]::-webkit-search-decoration {
 @keyframes rule-draw { from { scale: 0 1; } to { scale: 1 1; } }
 @keyframes drift { from { translate: 0 -7%; } to { translate: 0 7%; } }
 @keyframes clip-open { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes header-solid { to { background-color: var(--color-navy); box-shadow: 0 8px 28px rgb(5 10 20 / 0.35); } }
+@keyframes fade-out { to { opacity: 0; } }
+@keyframes card-drift { from { translate: -6% 0; } to { translate: 6% 0; } }
+
+/* Home header: solid navy by default. Where scroll-driven animation is available it starts transparent over the hero. */
+.home-header { background-color: var(--color-navy); }
 
 /* Native CSS scroll-driven animations. Progressive enhancement: unsupported browsers simply show the final state. */
 @media (prefers-reduced-motion: no-preference) {
@@ -120,6 +123,33 @@ input[type="search"]::-webkit-search-decoration {
     .scroll-progress {
       animation: bar-grow linear both;
       animation-timeline: scroll(root);
+    }
+    .home-header {
+      background-color: transparent;
+      animation: header-solid linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 140px;
+    }
+    .home-header::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 -56px 0;
+      z-index: -1;
+      pointer-events: none;
+      background: linear-gradient(to bottom, rgb(5 10 20 / 0.7), transparent);
+      animation: fade-out linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 140px;
+    }
+    /* An open menu or search panel always needs a solid bar */
+    .home-header[data-open] {
+      animation: none;
+      background-color: var(--color-navy);
+    }
+    .home-header[data-open]::before { display: none; }
+    .card-drift {
+      animation: card-drift linear both;
+      animation-timeline: view(inline);
     }
     .reveal {
       animation: reveal-up var(--ease-out-expo) both;
@@ -163,14 +193,6 @@ input[type="search"]::-webkit-search-decoration {
 .intro-fade { animation: intro-fade 0.9s var(--ease-out-expo) 0.45s backwards; }
 .intro-window { animation: intro-window 1.4s var(--ease-out-expo) 0.2s backwards; }
 .scroll-cue { animation: cue 1.8s ease-in-out infinite; }
-
-/* ---------- Hero window ---------- */
-.hero-window {
-  clip-path: inset(var(--hw-t) var(--hw-r) var(--hw-b) var(--hw-l) round var(--hw-radius));
-}
-@media (min-width: 1024px) {
-  .hero-window { --hw-t: 13%; --hw-r: 4%; --hw-b: 18%; --hw-l: 55%; --hw-radius: 28px; }
-}
 
 /* ---------- Marquee ---------- */
 @keyframes marquee {
