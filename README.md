@@ -1,36 +1,39 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# St. Sebastian Sports Academy — website
 
-## Getting Started
+Next.js 16 (App Router, Cache Components) + Tailwind v4. Built to the brand guideline: navy / dark teal / green / white, the official crest and mountain artwork, Figtree standing in for Averta.
 
-First, run the development server:
+## Scroll motion
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+| Tech | Where |
+| --- | --- |
+| **GSAP + ScrollTrigger** | Pinned hero scene (`components/home/HeroPinned.tsx`), horizontal values track (`ValuesHorizontal.tsx`) |
+| **Framer Motion** (`motion/react`) | `useScroll`/`useTransform` word-by-word mission text, stacked programme cards, drawing timeline, menu & filters |
+| **CSS scroll-driven animations** | `animation-timeline: view()/scroll()` for reveals, header shrink, progress bar, image drift (see `app/globals.css`) |
+| **Lenis** | Inertia scrolling, driven from GSAP's ticker (`components/layout/SmoothScroll.tsx`) |
+
+Everything respects `prefers-reduced-motion`.
+
+## Pages
+
+`/` · `/academy` · `/programs` · `/programs/[slug]` (×4) · `/fixtures` · `/news` · `/news/[slug]` (×3) · `/admissions`
+
+SEO: per-page metadata + canonical + Open Graph, JSON-LD (Organization, WebSite, BreadcrumbList, Course, SportsEvent, NewsArticle, FAQPage), `sitemap.xml`, `robots.txt`, web manifest, generated OG card.
+
+## Cloudinary
+
+Create `.env.local`:
+
+```
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=your-cloud-name
+NEXT_PUBLIC_SITE_URL=https://your-domain.org
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Every asset is listed in `data/media.ts` (key → Cloudinary public ID). Edit the IDs to match your media library; the hero video is `hero-reel`. Without a cloud name, brand-built placeholders are shown.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Forms
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+`app/actions.ts` validates trial requests and ticket reservations on the server. `deliver()` only logs for now — connect it to your email/CRM before launch.
 
-## Learn More
+## Scripts
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`python3 scripts/extract-brand-art.py <p1.svg> components/brand` regenerates the crest, mountain and icon from the guideline PDF.

@@ -1,78 +1,182 @@
 @import "tailwindcss";
 
-:root {
-  /* PRIMARY COLOUR PALETTE — St. Sebastian Sports Academy Brand Guidelines */
-  --color-primary-navy: #121e34;       /* RGB: 18/30/52   | CMYK: 92/81/50/61 */
-  --color-primary-teal: #1f4b50;       /* RGB: 31/75/80   | CMYK: 87/55/56/37 */
-  --color-primary-green: #88b03f;      /* RGB: 136/176/63 | CMYK: 53/13/100/0 */
-  --color-primary-white: #ffffff;      /* RGB: 255/255/255| CMYK: 0/0/0/0     */
-
-  /* SECONDARY COLOUR PALETTE — St. Sebastian Sports Academy Brand Guidelines */
-  --color-secondary-red: #E10600;      /* RGB: 223/31/38  | CMYK: 5/100/100/1 */
-  --color-secondary-royal: #233e95;    /* RGB: 35/62/149  | CMYK: 100/91/2/1  */
-  --color-secondary-yellow: #fed107;   /* RGB: 254/209/7  | CMYK: 1/16/99/0   */
-  --color-secondary-vibrant: #00a64f;  /* RGB: 0/166/79   | CMYK: 83/6/96/0   */
-}
-
+/* ------------------------------------------------------------------
+   St. Sebastian Sports Academy — design tokens
+   Source: Brand Guidelines, Colour Palette (p.16) and Typography (p.17)
+   Primary: navy + dark teal + green + white. Secondary colours are accents only.
+   ------------------------------------------------------------------ */
 @theme {
-  --font-sans: "Plus Jakarta Sans", Arial, sans-serif;
-  --font-display: "Teko", "Antonio", "Barlow Condensed", sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
+  --font-sans: "Figtree Variable", Arial, Helvetica, sans-serif;
 
-  /* Primary Brand Colors */
-  --color-academy-navy: #121e34;
-  --color-academy-teal: #1f4b50;
-  --color-academy-green: #88b03f;
-  --color-academy-white: #ffffff;
+  --color-navy: #121e34;
+  --color-navy-deep: #0b1424;
+  --color-teal: #1f4b50;
+  --color-teal-deep: #173a3e;
+  --color-green: #88b03f;
+  --color-green-soft: #dfeacb;
+  --color-mist: #f3f6ef;
+  --color-line: rgb(18 30 52 / 0.14);
 
-  /* Secondary Brand Colors */
-  --color-academy-red: #E10600;
-  --color-academy-royal: #233e95;
-  --color-academy-yellow: #fed107;
-  --color-academy-vibrant: #00a64f;
+  --color-sun: #fed107;
+  --color-alert: #e10600;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --breakpoint-xs: 30rem;
 }
+
+@property --hdr {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 84px;
+}
+
+/* Hero window clip, animated by GSAP (see components/home/HeroPinned.tsx) */
+@property --hw-t { syntax: "<percentage>"; inherits: false; initial-value: 44%; }
+@property --hw-r { syntax: "<percentage>"; inherits: false; initial-value: 6%; }
+@property --hw-b { syntax: "<percentage>"; inherits: false; initial-value: 10%; }
+@property --hw-l { syntax: "<percentage>"; inherits: false; initial-value: 6%; }
+@property --hw-radius { syntax: "<length>"; inherits: false; initial-value: 20px; }
+
+/* Height of the fixed header at rest; first sections add it as top padding */
+:root { --header-h: 84px; }
 
 html {
-  scroll-behavior: smooth;
-  overflow-x: clip;
+  scroll-padding-top: calc(var(--hdr) + 1rem);
+  -webkit-text-size-adjust: 100%;
 }
+
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: clip; }
 
 body {
-  background-color: var(--color-primary-white);
-  color: var(--color-primary-navy);
+  background: #fff;
+  color: var(--color-navy);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  line-height: 1.6;
   overflow-x: clip;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Hide scrollbars on horizontal mobile sub-nav while preserving touch scroll */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+::selection { background: var(--color-green); color: var(--color-navy); }
+
+:focus-visible {
+  outline: 3px solid var(--color-green);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
-@keyframes marquee-scroll {
-  0% {
-    transform: translate3d(0%, 0, 0);
+/* ---------- Typography ---------- */
+@utility display {
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  line-height: 0.9;
+  text-wrap: balance;
+}
+@utility text-hero { font-size: clamp(3.2rem, 10.4vw, 10rem); }
+@utility text-mega { font-size: clamp(2.75rem, 8.4vw, 7.5rem); }
+@utility text-xl-display { font-size: clamp(2.1rem, 5.2vw, 4.5rem); }
+@utility text-lg-display { font-size: clamp(1.6rem, 3.2vw, 2.6rem); }
+@utility tracking-label { letter-spacing: 0.18em; }
+@utility outline-text {
+  color: transparent;
+  -webkit-text-stroke: 2px currentColor;
+}
+
+/* ---------- Layout ---------- */
+@utility gutter { padding-inline: clamp(1.25rem, 5vw, 4.5rem); }
+@utility wrap { width: 100%; max-width: 88rem; margin-inline: auto; }
+
+/* ---------- Header: shrinks with scroll (CSS scroll-driven) ---------- */
+.site-header { --hdr: 84px; height: var(--hdr); }
+
+@keyframes shrink-header { to { --hdr: 64px; } }
+@keyframes bar-grow { from { scale: 0 1; } to { scale: 1 1; } }
+@keyframes reveal-up { from { opacity: 0; translate: 0 2.25rem; } to { opacity: 1; translate: 0 0; } }
+@keyframes reveal-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes rule-draw { from { scale: 0 1; } to { scale: 1 1; } }
+@keyframes drift { from { translate: 0 -7%; } to { translate: 0 7%; } }
+@keyframes clip-open { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+
+/* Native CSS scroll-driven animations. Progressive enhancement: unsupported browsers simply show the final state. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .site-header {
+      animation: shrink-header linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 160px;
+    }
+    .scroll-progress {
+      animation: bar-grow linear both;
+      animation-timeline: scroll(root);
+    }
+    .reveal {
+      animation: reveal-up var(--ease-out-expo) both;
+      animation-timeline: view();
+      animation-range: entry 4% entry 58%;
+    }
+    .reveal-2 { animation-range: entry 12% entry 66%; }
+    .reveal-3 { animation-range: entry 20% entry 74%; }
+    .reveal-4 { animation-range: entry 28% entry 82%; }
+    .reveal-fade {
+      animation: reveal-fade linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 70%;
+    }
+    .rule-draw {
+      transform-origin: left center;
+      animation: rule-draw linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 90%;
+    }
+    .drift {
+      animation: drift linear both;
+      animation-timeline: view();
+      animation-range: cover 0% cover 100%;
+    }
+    .wipe-in {
+      animation: clip-open linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 75%;
+    }
   }
-  100% {
-    transform: translate3d(-50%, 0, 0);
-  }
 }
 
-.animate-marquee {
-  display: flex;
-  width: max-content;
-  animation: marquee-scroll 32s linear infinite;
+/* ---------- Hero window ---------- */
+.hero-window {
+  clip-path: inset(var(--hw-t) var(--hw-r) var(--hw-b) var(--hw-l) round var(--hw-radius));
+}
+@media (min-width: 1024px) {
+  .hero-window { --hw-t: 15%; --hw-r: 4%; --hw-b: 13%; --hw-l: 52%; --hw-radius: 28px; }
 }
 
-.animate-marquee:hover {
-  animation-play-state: paused;
+/* ---------- Misc ---------- */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Brand book-stripe motif: the horizontal bars of the open book in the crest */
+.book-stripes {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    currentColor 0 6px,
+    transparent 6px 14px
+  );
 }
+
+details > summary { list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+
+dialog::backdrop { background: rgb(11 20 36 / 0.82); }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee {
-    animation: none;
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
   }
 }

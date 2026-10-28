@@ -1,14 +1,17 @@
+import type { MediaKey } from './media';
+
 export type ProgramCategory = 'all' | 'youth' | 'teen' | 'scholar' | 'specialist';
 
 export interface AcademyProgram {
   id: string;
+  slug: string;
   title: string;
   category: Exclude<ProgramCategory, 'all'>;
   categoryLabel: string;
   ageRange: string;
   schedule: string;
   summary: string;
-  image: string;
+  image: MediaKey;
   coachRatio: string;
   syllabus: string[];
   outcomes: string;
@@ -28,6 +31,7 @@ export interface FixtureTicket {
   homeTeam: string;
   awayTeam: string;
   matchTitle: string;
+  startsAt: string;
   dateFormatted: string;
   dayName: string;
   dayNumber: string;
@@ -37,7 +41,7 @@ export interface FixtureTicket {
   competition: string;
   price: number;
   seatsRemaining: number;
-  image: string;
+  image: MediaKey;
   ticketCode: string;
 }
 
@@ -48,7 +52,7 @@ export interface HighlightClip {
   location: string;
   duration: string;
   category: string;
-  image: string;
+  image: MediaKey;
   featured?: boolean;
   tacticalNotes: string;
   keyStats: { label: string; value: string }[];
@@ -60,18 +64,19 @@ export interface PlayerTestimonial {
   role: string;
   quote: string;
   rating: number;
-  avatar: string;
   outcome: string;
 }
 
 export interface BlogArticle {
   id: string;
+  slug: string;
+  isoDate: string;
   title: string;
   date: string;
   author: string;
   category: string;
   readTime: string;
-  image: string;
+  image: MediaKey;
   excerpt: string;
   content: string[];
 }
@@ -163,9 +168,47 @@ export const FOUNDATION_PILLARS: FoundationPillar[] = [
   },
 ];
 
+/** Brand values, word-for-word from the Brand Guidelines (p.5), paired with the proof point for each. */
+export const BRAND_VALUES = [
+  {
+    id: 'people-centred',
+    name: 'People-centred',
+    definition: 'We put people first, nurturing and empowering them to reach their highest potential.',
+    proof: '1:8 coach-to-athlete ratio',
+  },
+  {
+    id: 'tenacious',
+    name: 'Tenacious',
+    definition: 'We are determined, resilient and unwavering in our pursuit of success.',
+    proof: '18+ hours weekly on pitch & in the tactical lab',
+  },
+  {
+    id: 'valiant',
+    name: 'Valiant',
+    definition: 'We act boldly in our decisions, our actions and the standards we set.',
+    proof: '3.78 average scholar-athlete GPA',
+  },
+  {
+    id: 'respectful',
+    name: 'Respectful',
+    definition: 'We uphold mutual respect between the Academy and all our stakeholders.',
+    proof: '100% fair play & community service record',
+  },
+] as const;
+
+/** Brand voice (Guidelines p.6). */
+export const BRAND_VOICE = [
+  { name: 'Aspirational', line: 'We inspire young athletes to pursue excellence.' },
+  { name: 'Supportive', line: 'We nurture growth with encouragement and belief.' },
+  { name: 'Professional', line: 'We communicate with credibility while nurturing talent in sports and education.' },
+  { name: 'Purpose-driven', line: 'Every message reflects discipline, character, and long-term impact.' },
+  { name: 'Community-focused', line: 'We emphasize teamwork, belonging, and leadership.' },
+] as const;
+
 export const ACADEMY_PROGRAMS: AcademyProgram[] = [
   {
     id: 'prog-youth',
+    slug: 'youth-foundation',
     title: 'Youth Foundation Programs',
     category: 'youth',
     categoryLabel: 'Youth',
@@ -173,7 +216,7 @@ export const ACADEMY_PROGRAMS: AcademyProgram[] = [
     schedule: 'Mon / Wed / Fri · 4:00 PM – 6:00 PM',
     summary:
       'Introduces young players to technical ball mastery, bilateral coordination, spatial awareness, and joyful small-sided teamwork in a supportive environment.',
-    image: '/assets/brand/youth_kick_clean.jpg',
+    image: 'youth-kick',
     coachRatio: '1:8 Ratio',
     syllabus: [
       'First-touch mastery, 1v1 ball manipulation, and weak-foot confidence',
@@ -185,6 +228,7 @@ export const ACADEMY_PROGRAMS: AcademyProgram[] = [
   },
   {
     id: 'prog-teen',
+    slug: 'teen-competitive',
     title: 'Teen Competitive Academy',
     category: 'teen',
     categoryLabel: 'Teen',
@@ -192,7 +236,7 @@ export const ACADEMY_PROGRAMS: AcademyProgram[] = [
     schedule: 'Tue / Thu / Sat · 4:30 PM – 7:00 PM',
     summary:
       'Refines high-speed technical execution, tactical phase play, positional versatility, and athletic conditioning for regional and national youth leagues.',
-    image: '/assets/brand/youth_match_clean.jpg',
+    image: 'youth-match',
     coachRatio: '1:10 Ratio',
     syllabus: [
       '11v11 tactical periodization: build-up play, high press, and transition triggers',
@@ -204,6 +248,7 @@ export const ACADEMY_PROGRAMS: AcademyProgram[] = [
   },
   {
     id: 'prog-scholar',
+    slug: 'scholar-pathway',
     title: 'Full-Time Pro & Scholar Pathway',
     category: 'scholar',
     categoryLabel: 'Scholar',
@@ -211,7 +256,7 @@ export const ACADEMY_PROGRAMS: AcademyProgram[] = [
     schedule: 'Mon – Sat · Full-Day Residency & Academic Track',
     summary:
       'Our flagship dual-pathway combining daily professional football training, UEFA-licensed coaching, and accredited college-prep academics for aspiring pros.',
-    image: '/assets/brand/scholars_library_clean.jpg',
+    image: 'scholars-library',
     coachRatio: '1:6 Ratio',
     syllabus: [
       'Morning technical/tactical pitch sessions + afternoon accredited academic classes',
@@ -223,6 +268,7 @@ export const ACADEMY_PROGRAMS: AcademyProgram[] = [
   },
   {
     id: 'prog-specialist',
+    slug: 'elite-one-to-one',
     title: 'Special 1-2-1 Elite Mastery',
     category: 'specialist',
     categoryLabel: '1-to-1 Specialist',
@@ -230,7 +276,7 @@ export const ACADEMY_PROGRAMS: AcademyProgram[] = [
     schedule: 'Flexible By Appointment · 90-Min Intensive',
     summary:
       'Bespoke individual coaching tailored to position-specific mechanics—striker finishing, central midfield scanning, modern fullback overlapping, or goalkeeper distribution.',
-    image: '/assets/brand/player_strike.png',
+    image: 'player-strike',
     coachRatio: '1:1 Ratio',
     syllabus: [
       'High-speed biomechanics video breakdown of shooting and passing technique',
@@ -275,6 +321,7 @@ export const UPCOMING_FIXTURES: FixtureTicket[] = [
     homeTeam: 'ST. SEBASTIAN FC',
     awayTeam: 'JUVENTA FC ACADEMY',
     matchTitle: 'ST. SEBASTIAN VS JUVENTA FC',
+    startsAt: '2026-11-14T15:00:00-05:00',
     dateFormatted: 'NOV 14, 2026',
     dayName: 'SATURDAY',
     dayNumber: '14',
@@ -284,7 +331,7 @@ export const UPCOMING_FIXTURES: FixtureTicket[] = [
     competition: 'PREMIER ACADEMY SHOWCASE',
     price: 15,
     seatsRemaining: 42,
-    image: '/assets/brand/blog_tackle.png',
+    image: 'blog-tackle',
     ticketCode: 'STSEB-2026-JUV14',
   },
   {
@@ -292,6 +339,7 @@ export const UPCOMING_FIXTURES: FixtureTicket[] = [
     homeTeam: 'ST. SEBASTIAN FC',
     awayTeam: 'MELBA CLUB U19',
     matchTitle: 'ST. SEBASTIAN VS MELBA CLUB',
+    startsAt: '2026-11-21T17:30:00-05:00',
     dateFormatted: 'NOV 21, 2026',
     dayName: 'SATURDAY',
     dayNumber: '21',
@@ -301,7 +349,7 @@ export const UPCOMING_FIXTURES: FixtureTicket[] = [
     competition: 'ATLANTIC SCHOLAR CUP',
     price: 20,
     seatsRemaining: 19,
-    image: '/assets/brand/blog_volley.png',
+    image: 'blog-volley',
     ticketCode: 'STSEB-2026-MEL21',
   },
   {
@@ -309,6 +357,7 @@ export const UPCOMING_FIXTURES: FixtureTicket[] = [
     homeTeam: 'ST. SEBASTIAN FC',
     awayTeam: 'THUNDER FC ELITE',
     matchTitle: 'ST. SEBASTIAN VS THUNDER FC',
+    startsAt: '2026-12-05T14:00:00-05:00',
     dateFormatted: 'DEC 05, 2026',
     dayName: 'SATURDAY',
     dayNumber: '05',
@@ -318,7 +367,7 @@ export const UPCOMING_FIXTURES: FixtureTicket[] = [
     competition: 'NATIONAL SCOUT INVITATIONAL',
     price: 25,
     seatsRemaining: 28,
-    image: '/assets/brand/player_strike.png',
+    image: 'player-strike',
     ticketCode: 'STSEB-2026-THU05',
   },
 ];
@@ -331,7 +380,7 @@ export const TRENDING_HIGHLIGHTS: HighlightClip[] = [
     location: 'RESEARCH TRIANGLE PARK, NC',
     duration: '04:18',
     category: 'Tactical Breakdown',
-    image: '/assets/brand/highlight_1.png',
+    image: 'highlight-1',
     tacticalNotes:
       'Watch how our midfield diamond triggers a coordinated 6-second counter-press in the attacking third, leading to two first-half goals.',
     keyStats: [
@@ -347,7 +396,7 @@ export const TRENDING_HIGHLIGHTS: HighlightClip[] = [
     location: 'ST. SEBASTIAN ARENA',
     duration: '03:45',
     category: 'Goalkeeping',
-    image: '/assets/brand/highlight_2.png',
+    image: 'highlight-2',
     tacticalNotes:
       'U19 Scholar goalkeeper Marcus Vance demonstrates explosive footwork and top-corner extension saves during the Regional Cup quarter-final.',
     keyStats: [
@@ -363,7 +412,7 @@ export const TRENDING_HIGHLIGHTS: HighlightClip[] = [
     location: 'MAIN STADIUM, NC',
     duration: '08:12',
     category: 'Full Match Highlight',
-    image: '/assets/brand/match_highlight_main.png',
+    image: 'match-highlight-main',
     featured: true,
     tacticalNotes:
       'Complete extended highlights from our U19 Scholars championship victory. Featuring captain Rahim Khan’s 25-yard curling strike and the post-match trophy presentation.',
@@ -380,7 +429,7 @@ export const TRENDING_HIGHLIGHTS: HighlightClip[] = [
     location: 'RTP STADIUM PITCH 1',
     duration: '02:54',
     category: 'Match Moment',
-    image: '/assets/brand/highlight_3.png',
+    image: 'highlight-3',
     tacticalNotes:
       'A 14-pass build-up from our own penalty box culminates in a stoppage-time winner, showcasing the composure and tenacity taught across every age group.',
     keyStats: [
@@ -396,7 +445,7 @@ export const TRENDING_HIGHLIGHTS: HighlightClip[] = [
     location: 'ACADEMY TRAINING GROUND',
     duration: '05:20',
     category: 'Training Inside',
-    image: '/assets/brand/highlight_4.png',
+    image: 'highlight-4',
     tacticalNotes:
       'Go inside our evening individual development clinic focusing on close-control body feints,hip mobility, and clinical low-driven finishes.',
     keyStats: [
@@ -413,9 +462,8 @@ export const PLAYER_TESTIMONIALS: PlayerTestimonial[] = [
     name: 'ALONSO D. DOWSON JR.',
     role: 'U19 Scholar Captain [Age 18]',
     quote:
-      '"PROUD OF THE TEAM’S GROWTH, DISCIPLINE, AND TEAMWORK. ST. SEBASTIAN TRANSFORMED MY TACTICAL IQ AND PREPARED ME TO BECOME A TRUE CHAMPION ON AND OFF THE FIELD."',
+      '"Proud of the team’s growth, discipline, and teamwork. St. Sebastian transformed my tactical IQ and prepared me to become a true champion on and off the field."',
     rating: 5,
-    avatar: '/assets/brand/pdf_img_6.jpg',
     outcome: 'Committed to UNC Chapel Hill (NCAA Division I Full Scholarship)',
   },
   {
@@ -423,9 +471,8 @@ export const PLAYER_TESTIMONIALS: PlayerTestimonial[] = [
     name: 'AMARA NKOSI',
     role: 'U17 Girls Elite Midfielder [Age 16]',
     quote:
-      '"THE BALANCE BETWEEN HONOURS ACADEMICS AND UEFA-LEVEL COACHING IS UNMATCHED. OUR COACHES CARE DEEPLY ABOUT US AS PEOPLE FIRST, AND THAT CONFIDENCE SHOWS EVERY MATCHDAY."',
+      '"The balance between honours academics and UEFA-level coaching is unmatched. Our coaches care deeply about us as people first, and that confidence shows every matchday."',
     rating: 5,
-    avatar: '/assets/brand/scholars_campus_clean.jpg',
     outcome: 'Selected for U17 National Youth Talent ID Camp · 3.92 GPA',
   },
   {
@@ -433,9 +480,8 @@ export const PLAYER_TESTIMONIALS: PlayerTestimonial[] = [
     name: 'DAVID & ELENA MENSAH',
     role: 'Academy Parents [U12 & U15 Squads]',
     quote:
-      '"JOINING ST. SEBASTIAN SPORTS ACADEMY WAS THE BEST DECISION FOR OUR SONS. THEIR RESPECT, STUDY HABITS, AND TECHNICAL CONFIDENCE HAVE SKYROCKETED IN JUST ONE SEASON."',
+      '"Joining St. Sebastian Sports Academy was the best decision for our sons. Their respect, study habits, and technical confidence have skyrocketed in just one season."',
     rating: 5,
-    avatar: '/assets/brand/scholars_library_clean.jpg',
     outcome: 'Both sons named to the Academy Principal’s Honour Roll',
   },
 ];
@@ -443,12 +489,14 @@ export const PLAYER_TESTIMONIALS: PlayerTestimonial[] = [
 export const BLOG_UPDATES: BlogArticle[] = [
   {
     id: 'post-1',
-    title: 'THE ACADEMY SECURES 19-YEAR-OLD PRODIGY RAHIM KHAN ON SCHOLARSHIP',
+    slug: 'rahim-khan-scholarship',
+    isoDate: '2026-10-21',
+    title: 'The Academy secures 19-year-old prodigy Rahim Khan on scholarship',
     date: 'OCTOBER 21, 2026',
     author: 'CHIARA CANZI',
     category: 'Academy Signing',
     readTime: '3 min read',
-    image: '/assets/brand/blog_tackle.png',
+    image: 'blog-tackle',
     excerpt:
       'Following a standout performance at our Autumn Scout Showcase, attacking midfielder Rahim Khan joins the Full-Time Pro & Scholar Pathway.',
     content: [
@@ -459,12 +507,14 @@ export const BLOG_UPDATES: BlogArticle[] = [
   },
   {
     id: 'post-2',
-    title: 'A 90TH-MINUTE GOAL GAVE ST. SEBASTIAN A 2–1 WIN OVER RIVAL THUNDER FC',
+    slug: 'thunder-fc-late-winner',
+    isoDate: '2026-10-16',
+    title: 'A 90th-minute goal gave St. Sebastian a 2–1 win over rival Thunder FC',
     date: 'OCTOBER 16, 2026',
     author: 'ALONSO D. DOWSON',
     category: 'Match Report',
     readTime: '4 min read',
-    image: '/assets/brand/blog_laces.png',
+    image: 'blog-laces',
     excerpt:
       'Tenacious pressing and tactical patience paid off in stoppage time as our U18 squad remained unbeaten at the top of the Atlantic Academy League.',
     content: [
@@ -475,12 +525,14 @@ export const BLOG_UPDATES: BlogArticle[] = [
   },
   {
     id: 'post-3',
-    title: 'SCHOLAR-ATHLETES CELEBRATE 98% UNIVERSITY PLACEMENT & ACADEMIC HONOURS',
+    slug: 'class-of-2026-placements',
+    isoDate: '2026-10-08',
+    title: 'Scholar-athletes celebrate 98% university placement and academic honours',
     date: 'OCTOBER 08, 2026',
     author: 'ST. SEBASTIAN EDITORIAL',
     category: 'Academics & Pathways',
     readTime: '5 min read',
-    image: '/assets/brand/blog_volley.png',
+    image: 'blog-volley',
     excerpt:
       'From local grassroots to national championships and top-tier universities, our Class of 2026 proves what it means to be Champions for Life.',
     content: [
@@ -512,7 +564,7 @@ export const CORE_ACADEMY_PILLARS = [
     title: 'Full-Time Academy',
     subtitle:
       'Comprehensive residential program combining elite athletics with academic excellence',
-    image: '/assets/brand/scholars_campus_clean.jpg',
+    image: 'scholars-campus' as const,
     items: [
       {
         heading: 'RESIDENTIAL LIFE',
@@ -536,7 +588,7 @@ export const CORE_ACADEMY_PILLARS = [
     number: '02',
     title: 'Coaching Camps',
     subtitle: 'Intensive short-term programs during school holidays',
-    image: '/assets/brand/youth_kick_clean.jpg',
+    image: 'youth-kick' as const,
     items: [
       {
         heading: 'INTENSIVE SCHEDULE',
@@ -560,7 +612,7 @@ export const CORE_ACADEMY_PILLARS = [
     number: '03',
     title: 'Player Pathway',
     subtitle: 'Professional development and transfer opportunities',
-    image: '/assets/brand/player_strike.png',
+    image: 'player-strike' as const,
     items: [
       {
         heading: 'TRACKING',
@@ -585,7 +637,7 @@ export const CORE_ACADEMY_PILLARS = [
 export const CAMPUS_FACILITIES = {
   academic: {
     category: 'Academic Campus',
-    image: '/assets/brand/scholars_library_clean.jpg',
+    image: 'scholars-library' as const,
     highlights: [
       {
         title: 'Cambridge International Standards',
@@ -603,7 +655,7 @@ export const CAMPUS_FACILITIES = {
   },
   residential: {
     category: 'Residential Life',
-    image: '/assets/brand/pdf_img_22.jpg',
+    image: 'residential' as const,
     highlights: [
       {
         title: '400 Student Capacity',
