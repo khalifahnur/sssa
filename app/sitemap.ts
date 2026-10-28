@@ -9,8 +9,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: absoluteUrl('/'), changeFrequency: 'weekly' as const, priority: 1 },
     { url: absoluteUrl('/academy'), changeFrequency: 'monthly' as const, priority: 0.8 },
     { url: absoluteUrl('/programs'), changeFrequency: 'monthly' as const, priority: 0.9 },
-    { url: absoluteUrl('/fixtures'), changeFrequency: 'weekly' as const, priority: 0.7 },
-    { url: absoluteUrl('/news'), changeFrequency: 'weekly' as const, priority: 0.7 },
     { url: absoluteUrl('/admissions'), changeFrequency: 'monthly' as const, priority: 0.9 },
   ].map((p) => ({ ...p, lastModified: LAST_REVIEWED }));
 

@@ -46,7 +46,6 @@ export function ProgramsCarousel({ programs }: { programs: AcademyProgram[] }) {
 
   return (
     <section id="programs" aria-labelledby="programs-heading" className="relative isolate overflow-hidden bg-navy-deep text-white">
-      {/* Backdrop photograph, kept dark so the cards carry the colour */}
       <div aria-hidden="true" className="absolute inset-0 -z-10">
         <CldImage media="programs-backdrop" decorative sizes="100vw" className="h-full w-full opacity-60 grayscale" />
         <div className="absolute inset-0 bg-navy-deep/70" />
