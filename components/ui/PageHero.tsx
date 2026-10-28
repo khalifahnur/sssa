@@ -1,29 +1,41 @@
 import Link from 'next/link';
-import { Range } from '@/components/brand/Range';
 import { CldImage } from '@/components/media/CldImage';
-import { SectionHeader } from '@/components/ui/SectionHeader';
 import type { MediaKey } from '@/data/media';
 
 interface PageHeroProps {
+  /** Small label above the title (usually the section name) */
   section: string;
   title: React.ReactNode;
   intro?: React.ReactNode;
+  /** Background photograph; defaults to the shared banner image */
   media?: MediaKey;
   crumbs?: { name: string; href?: string }[];
-  /** Colour of the next section, so the mountain edge blends into it */
-  next?: 'white' | 'mist';
+  /** Add top padding equal to the fixed header, for pages that have no sub-navigation above the banner */
+  clearHeader?: boolean;
   children?: React.ReactNode;
 }
 
-/** Navy opening for every inner page: running header, huge title, optional framed photograph and a ridge into the next section. */
-export function PageHero({ section, title, intro, media, crumbs, next = 'white', children }: PageHeroProps) {
+/**
+ * Photographic banner for inner pages, in the same language as the home page's "The Project":
+ * a darkened, slowly drifting photograph with a centred condensed title.
+ */
+export function PageHero({ section, title, intro, media = 'project-banner', crumbs, clearHeader = false, children }: PageHeroProps) {
   return (
-    <section className="relative isolate overflow-hidden bg-navy text-white">
-      <div className="gutter wrap pb-28 pt-[calc(var(--header-h)+2.5rem)] lg:pb-40">
-        <SectionHeader title={section} section={section} />
+    <section className={`relative isolate flex flex-col items-center justify-center overflow-hidden bg-navy-deep text-center text-white ${clearHeader ? 'pt-[var(--header-h)]' : ''}`}>
+      <div className="drift absolute -inset-y-[14%] inset-x-0 -z-10">
+        <CldImage media={media} decorative priority sizes="100vw" className="h-full w-full" />
+      </div>
+      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-navy-deep/65" />
+      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-gradient-to-b from-navy-deep/40 via-transparent to-navy-deep/50" />
+
+      <div className="gutter w-full py-20 sm:py-24 lg:py-28">
+        <p className="reveal-fade text-xs font-extrabold uppercase tracking-label text-green sm:text-sm">{section}</p>
+        <h1 className="display reveal-fade mx-auto mt-4 max-w-6xl text-[clamp(3.4rem,8vw,7.4rem)] leading-[0.9]">{title}</h1>
+        {intro && <div className="reveal mx-auto mt-7 max-w-2xl text-lg leading-[1.9] text-white/80">{intro}</div>}
+        {children && <div className="reveal reveal-2 mt-9 flex flex-wrap justify-center gap-3">{children}</div>}
         {crumbs && (
-          <nav aria-label="Breadcrumb" className="mt-5 text-xs font-bold uppercase tracking-[0.16em] text-white/55">
-            <ol className="flex flex-wrap gap-2">
+          <nav aria-label="Breadcrumb" className="mt-10 text-xs font-bold uppercase tracking-[0.16em] text-white/55">
+            <ol className="flex flex-wrap justify-center gap-2">
               {crumbs.map((c, i) => (
                 <li key={c.name} className="flex gap-2">
                   {c.href ? (
@@ -41,29 +53,7 @@ export function PageHero({ section, title, intro, media, crumbs, next = 'white',
             </ol>
           </nav>
         )}
-
-        <div className={`mt-12 grid gap-10 lg:mt-20 ${media ? 'lg:grid-cols-[1.25fr_0.75fr] lg:items-end' : ''}`}>
-          <div>
-            <h1 className="display text-mega reveal-fade">{title}</h1>
-            {intro && <div className="reveal mt-8 max-w-2xl text-lg leading-relaxed text-white/75 lg:text-xl">{intro}</div>}
-            {children && <div className="reveal reveal-2 mt-10 flex flex-wrap gap-3">{children}</div>}
-          </div>
-          {media && (
-            <div className="wipe-in relative aspect-[4/3] overflow-hidden rounded-[4px] lg:aspect-[4/5]">
-              <div className="drift absolute -inset-y-[8%] inset-x-0">
-                <CldImage media={media} priority sizes="(min-width:1024px) 34vw, 100vw" className="h-full w-full" />
-              </div>
-            </div>
-          )}
-        </div>
       </div>
-      <Range
-        fill={next === 'mist' ? '#f3f6ef' : '#ffffff'}
-        facet="#121e34"
-        facetOpacity={0.1}
-        profile={1}
-        className="absolute inset-x-0 bottom-0 -z-10 h-[8vw] min-h-12"
-      />
     </section>
   );
 }

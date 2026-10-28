@@ -14,7 +14,7 @@ export interface SubNavTab {
  * main header as you scroll (CSS `position: sticky`). Tabs jump to sections of the current page and
  * highlight the one you are reading.
  */
-export function SubNav({ tabs, label }: { tabs: SubNavTab[]; label: string }) {
+export function SubNav({ tabs, label, first = false }: { tabs: SubNavTab[]; label: string; first?: boolean }) {
   const [active, setActive] = useState<string | null>(null);
   const nav = useRef<HTMLElement>(null);
   // Unique per instance: Next keeps recently visited pages mounted (hidden), and their underlines must not animate into each other
@@ -55,7 +55,7 @@ export function SubNav({ tabs, label }: { tabs: SubNavTab[]; label: string }) {
   }, [active]);
 
   return (
-    <div className="sticky top-[calc(var(--header-h)-1px)] z-40 h-[var(--subnav-h)] border-b border-navy/15 bg-white text-navy shadow-[0_10px_28px_rgba(18,30,52,0.08)]">
+    <div className={`sticky top-[calc(var(--header-h)-1px)] z-40 h-[var(--subnav-h)] ${first ? 'mt-[var(--header-h)]' : ''} border-b border-navy/15 bg-white text-navy shadow-[0_10px_28px_rgba(18,30,52,0.08)]`}>
       <nav
         ref={nav}
         aria-label={label}

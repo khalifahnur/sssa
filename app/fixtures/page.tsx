@@ -48,10 +48,11 @@ export default function FixturesPage() {
   return (
     <>
       <JsonLd data={[breadcrumbLd([{ name: 'Home', path: '/' }, { name: 'Fixtures', path: '/fixtures' }]), ...eventsLd]} />
+      <SubNav label="On this page" tabs={TABS} first />
       <PageHero
         section="Fixtures"
         crumbs={[{ name: 'Home', href: '/' }, { name: 'Fixtures' }]}
-        media="highlight-3"
+        media="highlight-2"
         title={
           <>
             Be there on <Tail>matchday</Tail>
@@ -59,7 +60,6 @@ export default function FixturesPage() {
         }
         intro="Watch the next generation compete. Reserve your passes for the upcoming showcase fixtures and cheer on the squad."
       />
-      <SubNav label="On this page" tabs={TABS} />
 
       <section id="tickets" aria-labelledby="tickets-heading" className="bg-white py-16 lg:py-24">
         <div className="gutter wrap">

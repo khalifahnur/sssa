@@ -23,32 +23,43 @@ interface CldImageProps {
   decorative?: boolean;
 }
 
-/** Cloudinary image. If the slot holds a video, its first frame is shown. Missing or broken assets fall back to a brand placeholder. */
+/**
+ * Cloudinary image. If the slot holds a video, its first frame is shown.
+ * Fallback chain: optimised rendition, then the untouched original URL, then the slot's local fallback photo,
+ * then an on-brand placeholder.
+ */
 export function CldImage({ media, sizes = '100vw', priority, className = '', imgClassName = '', alt, decorative }: CldImageProps) {
   const asset = MEDIA[media];
-  // 0: optimised Cloudinary rendition, 1: the untouched original URL (if transformations are refused), 2: placeholder
-  const [stage, setStage] = useState<0 | 1 | 2>(0);
+  // 0: optimised Cloudinary rendition, 1: the untouched original URL, 2: local fallback photo, 3: placeholder
+  const [stage, setStage] = useState<0 | 1 | 2 | 3>(asset.src ? 0 : asset.fallback ? 2 : 3);
   const text = alt ?? asset.alt;
   const original = asset.kind === 'image' && asset.src && /^https?:\/\//i.test(asset.src) ? asset.src : null;
 
-  if (!asset.src || stage === 2) {
+  const next = (from: 0 | 1 | 2 | 3) => {
+    if (from === 0 && original) return 1;
+    if (from <= 1 && asset.fallback) return 2;
+    return 3;
+  };
+
+  if (stage === 3) {
     return <MediaFallback label={text} decorative={decorative} className={className} />;
   }
 
+  const alternative = decorative ? '' : text;
+  const common = {
+    fill: true as const,
+    sizes,
+    priority,
+    style: asset.focus ? { objectPosition: asset.focus } : undefined,
+    className: `object-cover ${imgClassName}`,
+    onError: () => setStage(next(stage)),
+  };
+
   return (
     <div className={`relative overflow-hidden bg-navy ${className}`}>
-      <Image
-        src={stage === 1 && original ? original : asset.src}
-        alt={decorative ? '' : text}
-        fill
-        sizes={sizes}
-        priority={priority}
-        unoptimized={stage === 1}
-        loader={stage === 1 ? undefined : asset.kind === 'video' ? posterLoader : imageLoader}
-        onError={() => setStage(stage === 0 && original ? 1 : 2)}
-        style={asset.focus ? { objectPosition: asset.focus } : undefined}
-        className={`object-cover ${imgClassName}`}
-      />
+      {stage === 0 && asset.src && <Image {...common} alt={alternative} src={asset.src} loader={asset.kind === 'video' ? posterLoader : imageLoader} />}
+      {stage === 1 && original && <Image {...common} alt={alternative} src={original} unoptimized />}
+      {stage === 2 && asset.fallback && <Image {...common} alt={alternative} src={asset.fallback} unoptimized />}
     </div>
   );
 }

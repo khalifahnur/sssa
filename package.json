@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "media:sync": "node scripts/sync-media.mjs"
   },
   "dependencies": {
     "@fontsource-variable/figtree": "^5.3.0",

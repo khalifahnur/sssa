@@ -1,20 +1,18 @@
 import { HeroPinned } from '@/components/home/HeroPinned';
-import { MissionVision } from '@/components/home/MissionVision';
-import { StatsBand } from '@/components/home/StatsBand';
-import { ValuesHorizontal } from '@/components/home/ValuesHorizontal';
+import { ProjectSection } from '@/components/home/ProjectSection';
+import { FilmBand } from '@/components/home/FilmBand';
 import { ProgramsCarousel } from '@/components/home/ProgramsCarousel';
-import { PathwayTimeline } from '@/components/home/PathwayTimeline';
-import { CtaBand } from '@/components/sections/CtaBand';
+import { CampusSection } from '@/components/home/CampusSection';
+import { PathwaySection } from '@/components/home/PathwaySection';
+import { FindProgram } from '@/components/home/FindProgram';
 import { SubNav } from '@/components/layout/SubNav';
-import { Ridge } from '@/components/sections/Ridge';
-import { Marquee } from '@/components/sections/Marquee';
 import { ACADEMY_PROGRAMS } from '@/data/academyData';
 
 const TABS = [
-  { id: 'mission', label: 'Mission & Vision' },
-  { id: 'values', label: 'Values' },
+  { id: 'project', label: 'The Project' },
   { id: 'programs', label: 'Programs' },
-  { id: 'legacy', label: 'Legacy' },
+  { id: 'campus', label: 'The Campus' },
+  { id: 'pathway', label: 'Player Pathway' },
 ];
 
 export default function HomePage() {
@@ -22,14 +20,12 @@ export default function HomePage() {
     <>
       <HeroPinned />
       <SubNav label="On this page" tabs={TABS} />
-      <MissionVision />
-      <StatsBand />
-      <ValuesHorizontal />
+      <ProjectSection />
+      <FilmBand />
       <ProgramsCarousel programs={ACADEMY_PROGRAMS} />
-      <PathwayTimeline />
-      <Ridge color="#ffffff" facet="#1f4b50" opacity={0.12} profile={2} />
-      <Marquee />
-      <CtaBand />
+      <CampusSection />
+      <PathwaySection />
+      <FindProgram />
     </>
   );
 }

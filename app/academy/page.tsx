@@ -33,10 +33,11 @@ export default function AcademyPage() {
   return (
     <>
       <JsonLd data={breadcrumbLd([{ name: 'Home', path: '/' }, { name: 'The Academy', path: '/academy' }])} />
+      <SubNav label="On this page" tabs={TABS} first />
       <PageHero
         section="The Academy"
         crumbs={crumbs}
-        media="scholars-campus"
+        media="campus-wide"
         title={
           <>
             Where dreams become <Tail>reality</Tail>
@@ -49,7 +50,6 @@ export default function AcademyPage() {
           Programs
         </ButtonLink>
       </PageHero>
-      <SubNav label="On this page" tabs={TABS} />
 
       {/* Essence + promise (Guidelines p.7) */}
       <section id="essence" aria-labelledby="essence-heading" className="bg-white py-20 lg:py-32">
