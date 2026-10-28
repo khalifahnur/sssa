@@ -9,18 +9,11 @@ export interface SubNavTab {
   label: string;
 }
 
-/**
- * The second header. It sits in the page flow beneath the opening section, then pins directly under the
- * main header as you scroll (CSS `position: sticky`). Tabs jump to sections of the current page and
- * highlight the one you are reading.
- */
 export function SubNav({ tabs, label, first = false }: { tabs: SubNavTab[]; label: string; first?: boolean }) {
   const [active, setActive] = useState<string | null>(null);
   const nav = useRef<HTMLElement>(null);
-  // Unique per instance: Next keeps recently visited pages mounted (hidden), and their underlines must not animate into each other
   const underlineId = useId();
 
-  // Scroll-spy: the active tab is the last section whose top has passed the pinned bars
   useEffect(() => {
     let frame = 0;
     const update = () => {
@@ -46,7 +39,6 @@ export function SubNav({ tabs, label, first = false }: { tabs: SubNavTab[]; labe
     };
   }, [tabs]);
 
-  // Keep the active tab in view when the bar scrolls sideways on small screens
   useEffect(() => {
     const container = nav.current;
     const el = container?.querySelector<HTMLElement>('[aria-current="location"]');

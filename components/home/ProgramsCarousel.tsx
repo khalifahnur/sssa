@@ -7,11 +7,6 @@ import { CldImage } from '@/components/media/CldImage';
 import { ArrowCircle } from '@/components/ui/Icons';
 import type { AcademyProgram } from '@/data/academyData';
 
-/**
- * Programs: a darkened photographic backdrop, the title at the top left, round arrow buttons beneath it and a
- * row of photo cards that runs off the right edge. Swipe, drag, use the arrows, or Tab through the cards.
- * Card photos drift sideways as they pass (CSS `animation-timeline: view(inline)`).
- */
 export function ProgramsCarousel({ programs }: { programs: AcademyProgram[] }) {
   const track = useRef<HTMLUListElement>(null);
   const [canPrev, setCanPrev] = useState(false);

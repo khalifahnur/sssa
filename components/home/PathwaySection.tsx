@@ -14,10 +14,6 @@ function Tile({ media, className = '', sizes }: { media: MediaKey; className?: s
   );
 }
 
-/**
- * Player pathway: a text column, then an asymmetric photo mosaic. Tiles wipe in as they enter the viewport,
- * in staggered batches (GSAP ScrollTrigger.batch).
- */
 export function PathwaySection() {
   const root = useRef<HTMLElement>(null);
 
@@ -49,7 +45,7 @@ export function PathwaySection() {
             From local grassroots to national championships and top-tier universities, every scholar-athlete is followed from first trial to first
             contract, with long-term performance tracking, professional club placement and FIFA Connect integration.
           </p>
-          <ButtonLink href="/programs/scholar-pathway" variant="outline-dark" arrow={false} className="reveal reveal-3 mt-8">
+          <ButtonLink href="/programs/scholar-pathway"  arrow={false} className="reveal reveal-3 mt-8">
             Discover more
           </ButtonLink>
         </div>
@@ -59,7 +55,7 @@ export function PathwaySection() {
         <div className="col-span-2 flex flex-col justify-end px-1 pb-6 pt-2 lg:col-span-1 lg:col-start-1 lg:row-start-1 lg:pb-8">
           <p className="display reveal text-[clamp(4.5rem,8vw,7rem)] leading-[0.85] text-green">98%</p>
           <p className="reveal reveal-2 mt-3 max-w-[16rem] text-[0.95rem] leading-[1.7] text-navy/75">
-            placed into NCAA Division I/II scholarships or professional club contracts since 2018
+            placed into scholarships or professional club contracts.
           </p>
         </div>
         <Tile

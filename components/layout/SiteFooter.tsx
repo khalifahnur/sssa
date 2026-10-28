@@ -14,7 +14,7 @@ export function SiteFooter() {
           <div>
             <Crest variant="green" height={132} />
             <p className="display mt-6 text-5xl text-white">
-              Champions for <Tail>life</Tail>
+              Champions for life
             </p>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/65">
               Empowering young athletes to turn aspiration into achievement through football, academics and character.

@@ -7,19 +7,11 @@ import { ScrollWords } from '@/components/motion/ScrollWords';
 import { ButtonLink } from '@/components/ui/Button';
 import { BRAND_VALUES } from '@/data/academyData';
 
-/**
- * Wording from the Brand Guidelines (mission p.4, vision p.7). `*asterisks*` mark accent phrases.
- * The words light up as the cards travel up the screen (Framer Motion useScroll).
- */
 const MISSION =
   'To holistically develop young athletes through *world-class* football training, *transformative academics*, and *character-building values*, preparing every student to thrive, lead, and positively impact their communities.';
 const VISION =
   'St. Sebastian Sports Academy empowers young athletes to turn *aspiration into achievement*. We exist to create *clear, structured pathways* that set every student up for *lifelong success* on the pitch and in the classroom.';
 
-/**
- * The Project: a photographic banner with a centred title, two cards (mission in white, vision in navy) that
- * overlap its lower edge, and the four brand values beneath.
- */
 export function ProjectSection() {
   const cards = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: cards, offset: ['start 88%', 'end 42%'] });
@@ -44,7 +36,7 @@ export function ProjectSection() {
             <ScrollWords text={MISSION} progress={scrollYProgress} from={0} to={0.62} accentClass="text-teal" />
           </p>
           <div className="mt-auto pt-10">
-            <ButtonLink href="/academy#essence" variant="outline-dark" arrow={false}>
+            <ButtonLink href="/academy#essence" arrow={false}>
               Discover more
             </ButtonLink>
           </div>

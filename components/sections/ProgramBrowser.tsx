@@ -9,9 +9,8 @@ import { ACADEMY_PROGRAMS, type ProgramCategory } from '@/data/academyData';
 
 const FILTERS: { id: ProgramCategory; label: string }[] = [
   { id: 'all', label: 'All' },
-  { id: 'youth', label: 'Youth · 8–12' },
-  { id: 'teen', label: 'Teen · 13–16' },
-  { id: 'scholar', label: 'Scholar · 17–21' },
+  { id: 'youth', label: 'Youth · 5–12' },
+  { id: 'teen', label: 'Teen · 13–15' },
   { id: 'specialist', label: '1-to-1' },
 ];
 

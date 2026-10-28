@@ -8,12 +8,12 @@ import { ArrowRight, CircleHelp, Menu, Search, User, X } from 'lucide-react';
 import { Crest } from '@/components/brand/Crest';
 import { ButtonLink } from '@/components/ui/Button';
 import { lockScroll } from '@/lib/scroll';
-import { ACADEMY_PROGRAMS, BLOG_UPDATES, BRAND_CONTACT, UPCOMING_FIXTURES } from '@/data/academyData';
+import { ACADEMY_PROGRAMS, BLOG_UPDATES, BRAND_CONTACT } from '@/data/academyData';
 
 type Panel = 'menu' | 'search';
 
 const QUICK_LINKS = [
-  { href: '/fixtures', label: 'Tickets', show: '' },
+  //{ href: '/fixtures', label: 'Tickets', show: '' },
   { href: '/programs', label: 'Programs', show: '' },
   { href: '/academy#campus', label: 'Facilities', show: '' },
   { href: '/fixtures#highlights', label: 'Video', show: 'hidden xl:block' },
@@ -40,7 +40,6 @@ const SEARCH_INDEX: SearchEntry[] = [
   { title: 'Campus & facilities', href: '/academy#campus', kind: 'Page', text: 'residential boarding library labs study lounges' },
   { title: 'Book a trial evaluation', href: '/admissions#trial', kind: 'Page', text: 'apply admissions register enquire' },
   ...ACADEMY_PROGRAMS.map((p) => ({ title: p.title, href: `/programs/${p.slug}`, kind: 'Program', text: `${p.ageRange} ${p.categoryLabel} ${p.summary}` })),
-  ...UPCOMING_FIXTURES.map((f) => ({ title: f.matchTitle, href: `/fixtures#${f.id}`, kind: 'Fixture', text: `${f.competition} ${f.dateFormatted} ${f.location}` })),
   ...BLOG_UPDATES.map((a) => ({ title: a.title, href: `/news/${a.slug}`, kind: 'News', text: `${a.category} ${a.excerpt}` })),
 ];
 

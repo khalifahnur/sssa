@@ -35,7 +35,6 @@ export function TrialForm() {
         setReference(result.reference);
       } else {
         setErrors(result.errors);
-        // move focus to the first invalid field
         const first = Object.keys(result.errors)[0];
         formRef.current?.querySelector<HTMLElement>(`[name="${first}"]`)?.focus();
       }
@@ -66,8 +65,8 @@ export function TrialForm() {
       <Field label="Email" error={errors.email}>
         {(p) => <input {...p} name="email" type="email" autoComplete="email" placeholder="you@example.com" />}
       </Field>
-      <Field label="Athlete age" error={errors.athleteAge} hint="Between 6 and 23">
-        {(p) => <input {...p} name="athleteAge" type="number" inputMode="numeric" min={6} max={23} placeholder="14" />}
+      <Field label="Athlete age" error={errors.athleteAge} hint="Between 5 and 15">
+        {(p) => <input {...p} name="athleteAge" type="number" inputMode="numeric" min={5} max={15} placeholder="8" />}
       </Field>
       <Field label="Program" error={errors.programId}>
         {(p) => (
