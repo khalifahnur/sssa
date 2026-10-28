@@ -201,6 +201,12 @@ input[type="search"]::-webkit-search-decoration {
 .intro-window { animation: intro-window 1.4s var(--ease-out-expo) 0.2s backwards; }
 .scroll-cue { animation: cue 1.8s ease-in-out infinite; }
 
+/* ---------- Mega menu: dim the other rows while one is hovered ---------- */
+.menu-row > a { transition: opacity 0.35s ease, color 0.3s ease; }
+@media (hover: hover) {
+  .menu-list:hover .menu-row:not(:hover) > a { opacity: 0.3; }
+}
+
 /* ---------- Marquee ---------- */
 @keyframes marquee {
   to { translate: -50% 0; }
