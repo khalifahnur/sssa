@@ -7,6 +7,7 @@ import { Slash, Tail } from '@/components/brand/Marks';
 import { PathwayTimeline } from '@/components/home/PathwayTimeline';
 import { CtaBand } from '@/components/sections/CtaBand';
 import { ButtonLink } from '@/components/ui/Button';
+import { SubNav } from '@/components/layout/SubNav';
 import { breadcrumbLd, pageMetadata } from '@/lib/seo';
 import { BRAND_VOICE, CAMPUS_FACILITIES, CORE_ACADEMY_PILLARS, INSTITUTIONAL_HERO_COPY } from '@/data/academyData';
 
@@ -17,6 +18,14 @@ export const metadata: Metadata = pageMetadata({
   path: '/academy',
   keywords: ['residential football academy', 'scholar athlete pathway', 'Cambridge curriculum', 'boarding sports academy'],
 });
+
+const TABS = [
+  { id: 'essence', label: 'Essence' },
+  { id: 'pillars', label: 'Pillars' },
+  { id: 'campus', label: 'Campus' },
+  { id: 'voice', label: 'Voice' },
+  { id: 'legacy', label: 'Legacy' },
+];
 
 const crumbs = [{ name: 'Home', href: '/' }, { name: 'The Academy' }];
 
@@ -40,9 +49,10 @@ export default function AcademyPage() {
           Programmes
         </ButtonLink>
       </PageHero>
+      <SubNav label="On this page" tabs={TABS} />
 
       {/* Essence + promise (Guidelines p.7) */}
-      <section aria-labelledby="essence-heading" className="bg-white py-20 lg:py-32">
+      <section id="essence" aria-labelledby="essence-heading" className="bg-white py-20 lg:py-32">
         <div className="gutter wrap grid gap-16 lg:grid-cols-[0.8fr_1.2fr]">
           <h2 id="essence-heading" className="display text-xl-display text-green reveal">
             Brand
@@ -72,7 +82,7 @@ export default function AcademyPage() {
       </section>
 
       {/* Three pillars, each with a sticky image */}
-      <section aria-labelledby="pillars-heading" className="bg-mist py-20 lg:py-32">
+      <section id="pillars" aria-labelledby="pillars-heading" className="bg-mist py-20 lg:py-32">
         <div className="gutter wrap">
           <SectionHeader title="How it works" section="Three pillars" />
           <h2 id="pillars-heading" className="display text-mega mt-10 max-w-4xl">
@@ -81,7 +91,7 @@ export default function AcademyPage() {
           <div className="mt-16 space-y-24 lg:mt-24 lg:space-y-40">
             {CORE_ACADEMY_PILLARS.map((pillar, i) => (
               <article key={pillar.number} className="grid gap-10 lg:grid-cols-2 lg:gap-20">
-                <div className={`lg:sticky lg:top-32 lg:self-start ${i % 2 ? 'lg:order-2' : ''}`}>
+                <div className={`lg:sticky lg:top-[calc(var(--stack-h)+1.5rem)] lg:self-start ${i % 2 ? 'lg:order-2' : ''}`}>
                   <div className="wipe-in relative aspect-[4/3] overflow-hidden rounded-[4px] lg:aspect-[5/4]">
                     <div className="drift absolute -inset-y-[8%] inset-x-0">
                       <CldImage media={pillar.image} sizes="(min-width:1024px) 44vw, 100vw" className="h-full w-full" />
@@ -89,7 +99,7 @@ export default function AcademyPage() {
                   </div>
                 </div>
                 <div>
-                  <p className="display outline-text text-[clamp(4rem,10vw,9rem)] text-navy/80">{pillar.number}</p>
+                  <p className="outline-text display text-[clamp(4rem,10vw,9rem)] [--stroke:var(--color-navy)]">{pillar.number}</p>
                   <h3 className="display text-xl-display">{pillar.title}</h3>
                   <p className="mt-4 max-w-md text-lg opacity-75">{pillar.subtitle}</p>
                   <dl className="mt-10 border-t-[3px] border-navy">
@@ -108,7 +118,7 @@ export default function AcademyPage() {
       </section>
 
       {/* Campus */}
-      <section aria-labelledby="campus-heading" className="bg-navy py-20 text-white lg:py-32">
+      <section id="campus" aria-labelledby="campus-heading" className="bg-navy py-20 text-white lg:py-32">
         <div className="gutter wrap">
           <SectionHeader title="Campus" section="Facilities" />
           <h2 id="campus-heading" className="display text-mega mt-10 max-w-4xl">
@@ -138,7 +148,7 @@ export default function AcademyPage() {
       </section>
 
       {/* Voice (Guidelines p.6) */}
-      <section aria-labelledby="voice-heading" className="bg-green py-20 text-navy lg:py-32">
+      <section id="voice" aria-labelledby="voice-heading" className="bg-green py-20 text-navy lg:py-32">
         <div className="gutter wrap grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
           <h2 id="voice-heading" className="display text-xl-display [--slash:var(--color-navy)]">
             How we <Tail>speak</Tail>

@@ -7,9 +7,17 @@ import { CldImage } from '@/components/media/CldImage';
 import { ButtonLink } from '@/components/ui/Button';
 import { Tail } from '@/components/brand/Marks';
 import { CtaBand } from '@/components/sections/CtaBand';
+import { SubNav } from '@/components/layout/SubNav';
 import { breadcrumbLd, pageMetadata } from '@/lib/seo';
 import { absoluteUrl, SITE } from '@/lib/site';
 import { ACADEMY_PROGRAMS } from '@/data/academyData';
+
+const TABS = [
+  { id: 'facts', label: 'Facts' },
+  { id: 'syllabus', label: 'Syllabus' },
+  { id: 'outcome', label: 'Outcome' },
+  { id: 'others', label: 'More programmes' },
+];
 
 export function generateStaticParams() {
   return ACADEMY_PROGRAMS.map((p) => ({ slug: p.slug }));
@@ -71,8 +79,9 @@ export default async function ProgramPage({ params }: PageProps<'/programs/[slug
       >
         <ButtonLink href={`/admissions?program=${program.slug}#trial`}>Apply for a trial</ButtonLink>
       </PageHero>
+      <SubNav label="On this page" tabs={TABS} />
 
-      <section aria-label="Programme facts" className="bg-white">
+      <section id="facts" aria-label="Programme facts" className="bg-white">
         <dl className="gutter wrap grid gap-8 py-12 sm:grid-cols-3 lg:py-16">
           {facts.map((f) => (
             <div key={f.label} className="reveal border-l-[3px] border-green pl-5">
@@ -83,9 +92,9 @@ export default async function ProgramPage({ params }: PageProps<'/programs/[slug
         </dl>
       </section>
 
-      <section aria-labelledby="syllabus-heading" className="bg-mist py-20 lg:py-32">
+      <section id="syllabus" aria-labelledby="syllabus-heading" className="bg-mist py-20 lg:py-32">
         <div className="gutter wrap grid gap-14 lg:grid-cols-[0.8fr_1.2fr]">
-          <div className="lg:sticky lg:top-32 lg:self-start">
+          <div className="lg:sticky lg:top-[calc(var(--stack-h)+1.5rem)] lg:self-start">
             <h2 id="syllabus-heading" className="display text-xl-display">
               What you will <Tail>learn</Tail>
             </h2>
@@ -102,7 +111,7 @@ export default async function ProgramPage({ params }: PageProps<'/programs/[slug
         </div>
       </section>
 
-      <section aria-labelledby="outcome-heading" className="bg-teal py-20 text-white lg:py-28">
+      <section id="outcome" aria-labelledby="outcome-heading" className="bg-teal py-20 text-white lg:py-28">
         <div className="gutter wrap grid items-center gap-10 lg:grid-cols-[0.6fr_1.4fr]">
           <h2 id="outcome-heading" className="display text-xl-display text-green">
             The <Tail>outcome</Tail>
@@ -111,7 +120,7 @@ export default async function ProgramPage({ params }: PageProps<'/programs/[slug
         </div>
       </section>
 
-      <section aria-labelledby="others-heading" className="bg-white py-20 lg:py-28">
+      <section id="others" aria-labelledby="others-heading" className="bg-white py-20 lg:py-28">
         <div className="gutter wrap">
           <h2 id="others-heading" className="display text-lg-display">
             Other programmes

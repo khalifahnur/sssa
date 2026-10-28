@@ -5,6 +5,7 @@ import { SectionHeader } from '@/components/ui/SectionHeader';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { Tail } from '@/components/brand/Marks';
 import { TrialForm } from '@/components/forms/TrialForm';
+import { SubNav } from '@/components/layout/SubNav';
 import { breadcrumbLd, pageMetadata } from '@/lib/seo';
 import { ACADEMY_PROGRAMS, BRAND_CONTACT, PLAYER_TESTIMONIALS } from '@/data/academyData';
 
@@ -15,6 +16,13 @@ export const metadata: Metadata = pageMetadata({
   path: '/admissions',
   keywords: ['football academy admissions', 'book a trial', 'scholar athlete application', 'contact St. Sebastian'],
 });
+
+const TABS = [
+  { id: 'how-it-works', label: 'How it works' },
+  { id: 'trial', label: 'Trial request' },
+  { id: 'stories', label: 'Stories' },
+  { id: 'faq', label: 'FAQ' },
+];
 
 const STEPS = [
   { title: 'Tell us about your athlete', body: 'Share age, position, experience and the programme you are interested in using the form below.' },
@@ -52,8 +60,9 @@ export default function AdmissionsPage() {
         }
         intro="Book a trial evaluation, ask about a programme, or simply say hello. The admissions team replies to every enquiry."
       />
+      <SubNav label="On this page" tabs={TABS} />
 
-      <section aria-labelledby="steps-heading" className="bg-white py-20 lg:py-28">
+      <section id="how-it-works" aria-labelledby="steps-heading" className="bg-white py-20 lg:py-28">
         <div className="gutter wrap">
           <h2 id="steps-heading" className="display text-xl-display">
             How it <Tail>works</Tail>
@@ -70,7 +79,7 @@ export default function AdmissionsPage() {
         </div>
       </section>
 
-      <section id="trial" aria-labelledby="trial-heading" className="scroll-mt-24 bg-mist py-20 lg:py-32">
+      <section id="trial" aria-labelledby="trial-heading" className="bg-mist py-20 lg:py-32">
         <div className="gutter wrap grid gap-16 lg:grid-cols-[1.4fr_0.8fr]">
           <div>
             <SectionHeader title="Trial request" section="Apply" />
@@ -107,7 +116,7 @@ export default function AdmissionsPage() {
         </div>
       </section>
 
-      <section aria-labelledby="voices-heading" className="bg-teal py-20 text-white lg:py-32">
+      <section id="stories" aria-labelledby="voices-heading" className="bg-teal py-20 text-white lg:py-32">
         <div className="gutter wrap">
           <h2 id="voices-heading" className="display text-xl-display">
             In their <Tail>words</Tail>
@@ -127,7 +136,7 @@ export default function AdmissionsPage() {
         </div>
       </section>
 
-      <section aria-labelledby="faq-heading" className="bg-white py-20 lg:py-32">
+      <section id="faq" aria-labelledby="faq-heading" className="bg-white py-20 lg:py-32">
         <div className="gutter wrap grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
           <h2 id="faq-heading" className="display text-xl-display">
             Common <Tail>questions</Tail>

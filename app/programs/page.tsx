@@ -6,6 +6,7 @@ import { Tail } from '@/components/brand/Marks';
 import { ProgramBrowser } from '@/components/sections/ProgramBrowser';
 import { CtaBand } from '@/components/sections/CtaBand';
 import { ButtonLink } from '@/components/ui/Button';
+import { SubNav } from '@/components/layout/SubNav';
 import { breadcrumbLd, pageMetadata } from '@/lib/seo';
 import { absoluteUrl, SITE } from '@/lib/site';
 import { ACADEMY_PROGRAMS, HOW_WE_HELP_SERVICES } from '@/data/academyData';
@@ -30,6 +31,12 @@ const listLd = {
   })),
 };
 
+const TABS = [
+  { id: 'browse', label: 'Browse' },
+  { id: 'more-ways', label: 'Camps & training' },
+  { id: 'join', label: 'Apply' },
+];
+
 export default function ProgramsPage() {
   return (
     <>
@@ -45,8 +52,9 @@ export default function ProgramsPage() {
         }
         intro="From first touches at eight to full-time residency at twenty-one, every programme is built around the same promise: elite football, real education, lasting character."
       />
+      <SubNav label="On this page" tabs={TABS} />
 
-      <section aria-labelledby="browse-heading" className="bg-white py-16 lg:py-24">
+      <section id="browse" aria-labelledby="browse-heading" className="bg-white py-16 lg:py-24">
         <div className="gutter wrap">
           <h2 id="browse-heading" className="sr-only">
             Browse programmes
@@ -55,7 +63,7 @@ export default function ProgramsPage() {
         </div>
       </section>
 
-      <section aria-labelledby="help-heading" className="bg-mist py-20 lg:py-32">
+      <section id="more-ways" aria-labelledby="help-heading" className="bg-mist py-20 lg:py-32">
         <div className="gutter wrap">
           <SectionHeader title="More ways in" section="Camps & training" />
           <h2 id="help-heading" className="display text-mega mt-10 max-w-3xl">

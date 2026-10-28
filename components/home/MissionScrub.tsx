@@ -62,9 +62,9 @@ export function MissionScrub() {
   const total = WORDS.length;
 
   return (
-    <section aria-labelledby="mission-heading" className="relative bg-navy text-white">
+    <section id="mission" aria-labelledby="mission-heading" className="relative bg-navy text-white">
       <div ref={ref} className="h-[260svh]">
-        <div className="sticky top-0 flex h-svh items-center">
+        <div className="sticky top-[var(--stack-h)] flex h-[calc(100svh-var(--stack-h))] items-center">
           <div className="gutter wrap grid w-full gap-8 lg:grid-cols-[0.55fr_1fr] lg:gap-16">
             <h2 id="mission-heading" className="display text-xl-display text-green">
               Mission

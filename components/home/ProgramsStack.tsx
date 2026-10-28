@@ -24,10 +24,10 @@ function Panel({ program, index, total, progress }: { program: AcademyProgram; i
   const dim = useTransform(progress, [start, end], [0, index === total - 1 ? 0 : 0.45]);
 
   return (
-    <div className="lg:sticky lg:top-0 lg:flex lg:h-svh lg:items-center lg:pt-[var(--header-h)]">
+    <div className="lg:sticky lg:top-[var(--stack-h)] lg:flex lg:h-[calc(100svh-var(--stack-h))] lg:items-center">
       <motion.article
         style={{ scale, transformOrigin: 'center top' }}
-        className={`relative grid w-full overflow-hidden rounded-[6px] lg:h-[min(74svh,40rem)] lg:grid-cols-[0.9fr_1.1fr] ${theme.card}`}
+        className={`relative grid w-full overflow-hidden rounded-[6px] lg:h-[min(calc(100svh-var(--stack-h)-3rem),40rem)] lg:grid-cols-[0.9fr_1.1fr] ${theme.card}`}
       >
         <div className="relative aspect-[4/3] lg:aspect-auto">
           <CldImage media={program.image} sizes="(min-width:1024px) 40vw, 100vw" className="absolute inset-0 h-full w-full" />
@@ -64,7 +64,7 @@ export function ProgramsStack({ programs }: { programs: AcademyProgram[] }) {
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end end'] });
 
   return (
-    <section aria-labelledby="programs-heading" className="bg-white py-20 lg:pb-0 lg:pt-28">
+    <section id="programmes" aria-labelledby="programs-heading" className="bg-white py-20 lg:pb-0 lg:pt-28">
       <div className="gutter wrap">
         <SectionHeader title="Programmes" section="Pathways" />
         <div className="mt-10 flex flex-col justify-between gap-6 lg:mb-14 lg:flex-row lg:items-end">

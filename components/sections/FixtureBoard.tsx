@@ -107,7 +107,7 @@ export function FixtureBoard() {
         const open = openId === f.id;
         const low = f.seatsRemaining <= 20;
         return (
-          <li key={f.id} id={f.id} className="scroll-mt-28 border-b border-navy/15">
+          <li key={f.id} id={f.id} className="border-b border-navy/15">
             <div className="grid grid-cols-[auto_1fr] items-center gap-x-6 gap-y-4 py-7 sm:grid-cols-[6rem_1fr_auto] sm:gap-x-10 lg:py-9">
               <time dateTime={f.startsAt} className="text-center leading-none">
                 <span className="display block text-5xl sm:text-6xl">{f.dayNumber}</span>

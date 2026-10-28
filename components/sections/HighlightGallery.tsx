@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { CldImage } from '@/components/media/CldImage';
+import { CldVideo } from '@/components/media/CldVideo';
+import { MEDIA } from '@/data/media';
 import { Dialog } from '@/components/ui/Dialog';
 import { TRENDING_HIGHLIGHTS, type HighlightClip } from '@/data/academyData';
 
@@ -35,7 +37,11 @@ export function HighlightGallery() {
         {active && (
           <article>
             <div className="relative aspect-[16/9] bg-navy">
-              <CldImage media={active.image} sizes="64rem" className="h-full w-full" />
+              {MEDIA[active.image].kind === 'video' ? (
+                <CldVideo media={active.image} controls className="h-full w-full" />
+              ) : (
+                <CldImage media={active.image} sizes="64rem" className="h-full w-full" />
+              )}
             </div>
             <div className="p-6 sm:p-10">
               <p className="text-xs font-extrabold uppercase tracking-label text-green">

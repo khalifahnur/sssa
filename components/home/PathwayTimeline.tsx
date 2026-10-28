@@ -14,7 +14,7 @@ export function PathwayTimeline() {
   const dotOpacity = useTransform(scrollYProgress, [0, 0.02], [0.3, 1]);
 
   return (
-    <section aria-labelledby="legacy-heading" className="bg-teal py-24 text-white lg:py-32">
+    <section id="legacy" aria-labelledby="legacy-heading" className="bg-teal py-24 text-white lg:py-32">
       <div className="gutter wrap">
         <SectionHeader title="Our legacy" section="1985 — today" />
         <h2 id="legacy-heading" className="display text-mega mt-10 max-w-4xl">
@@ -39,7 +39,7 @@ export function PathwayTimeline() {
               <li key={item.year} className="relative pl-12 lg:grid lg:grid-cols-2 lg:gap-24 lg:pl-0">
                 <span aria-hidden="true" className="absolute left-0 top-3 h-[1.2rem] w-[1.2rem] rounded-full border-[3px] border-green bg-teal lg:left-1/2 lg:-translate-x-1/2" />
                 <div className={`reveal ${i % 2 === 0 ? 'lg:text-right' : 'lg:col-start-2'}`}>
-                  <p className="display outline-text text-[clamp(3.5rem,9vw,8rem)] text-white/90">{item.year}</p>
+                  <p className="display text-[clamp(3.5rem,9vw,8rem)] text-white">{item.year}</p>
                 </div>
                 <div className={`reveal reveal-2 ${i % 2 === 0 ? 'lg:col-start-2 lg:row-start-1' : 'lg:col-start-1 lg:row-start-1 lg:text-right'}`}>
                   <h3 className="text-xl font-extrabold uppercase leading-tight tracking-wide sm:text-2xl">{item.title}</h3>
