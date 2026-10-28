@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+:root {
+  /* PRIMARY COLOUR PALETTE — St. Sebastian Sports Academy Brand Guidelines */
+  --color-primary-navy: #121e34;       /* RGB: 18/30/52   | CMYK: 92/81/50/61 */
+  --color-primary-teal: #1f4b50;       /* RGB: 31/75/80   | CMYK: 87/55/56/37 */
+  --color-primary-green: #88b03f;      /* RGB: 136/176/63 | CMYK: 53/13/100/0 */
+  --color-primary-white: #ffffff;      /* RGB: 255/255/255| CMYK: 0/0/0/0     */
+
+  /* SECONDARY COLOUR PALETTE — St. Sebastian Sports Academy Brand Guidelines */
+  --color-secondary-red: #E10600;      /* RGB: 223/31/38  | CMYK: 5/100/100/1 */
+  --color-secondary-royal: #233e95;    /* RGB: 35/62/149  | CMYK: 100/91/2/1  */
+  --color-secondary-yellow: #fed107;   /* RGB: 254/209/7  | CMYK: 1/16/99/0   */
+  --color-secondary-vibrant: #00a64f;  /* RGB: 0/166/79   | CMYK: 83/6/96/0   */
+}
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", Arial, sans-serif;
+  --font-display: "Teko", "Antonio", "Barlow Condensed", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Primary Brand Colors */
+  --color-academy-navy: #121e34;
+  --color-academy-teal: #1f4b50;
+  --color-academy-green: #88b03f;
+  --color-academy-white: #ffffff;
+
+  /* Secondary Brand Colors */
+  --color-academy-red: #E10600;
+  --color-academy-royal: #233e95;
+  --color-academy-yellow: #fed107;
+  --color-academy-vibrant: #00a64f;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
+
+body {
+  background-color: var(--color-primary-white);
+  color: var(--color-primary-navy);
+  overflow-x: clip;
+}
+
+/* Hide scrollbars on horizontal mobile sub-nav while preserving touch scroll */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes marquee-scroll {
+  0% {
+    transform: translate3d(0%, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 32s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
+  }
+}
