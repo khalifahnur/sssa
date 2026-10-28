@@ -52,14 +52,9 @@ function search(query: string): SearchEntry[] {
   }).slice(0, 9);
 }
 
-/**
- * Main header: fixed navy bar with menu button, quick links, centred crest and utilities.
- * The menu and search open as full-width panels directly beneath it.
- */
 export function SiteHeader() {
   const pathname = usePathname();
   const router = useRouter();
-  // A panel counts as open only on the page it was opened from, so navigating closes it without an effect.
   const [open, setOpen] = useState<{ panel: Panel; path: string } | null>(null);
   const panel = open && open.path === pathname ? open.panel : null;
   const isHome = pathname === '/';
@@ -103,7 +98,6 @@ export function SiteHeader() {
       >
         <span className="scroll-progress absolute inset-x-0 bottom-0 z-10 h-[3px] origin-left bg-green" aria-hidden="true" />
         <div className="relative flex h-full items-stretch justify-between">
-          {/* Left: menu button (with divider) and quick links */}
           <div className="flex items-stretch">
             <button
               ref={menuButton}
@@ -117,7 +111,7 @@ export function SiteHeader() {
               {panel === 'menu' ? <X className="h-7 w-7" strokeWidth={1.5} /> : <Menu className="h-8 w-8" strokeWidth={1.5} />}
             </button>
             <nav aria-label="Quick links" className="hidden items-center gap-8 pl-8 lg:flex">
-              {QUICK_LINKS.map((l) => (
+              {/* {QUICK_LINKS.map((l) => (
                 <Link
                   key={l.label}
                   href={l.href}
@@ -127,11 +121,9 @@ export function SiteHeader() {
                   {l.label}
                   {isActive(l.href) && <motion.span layoutId="quick-underline" className="absolute inset-x-0 -bottom-0.5 h-[3px] bg-green" />}
                 </Link>
-              ))}
+              ))} */}
             </nav>
           </div>
-
-          {/* Centre: crest on a solid navy tab (the guideline keeps the crest off busy imagery) */}
           <Link
             href="/"
             aria-label="St. Sebastian Sports Academy — home"
@@ -139,8 +131,6 @@ export function SiteHeader() {
           >
             <Crest variant="green" height={58} className="transition-transform duration-300 group-hover:scale-105" />
           </Link>
-
-          {/* Right: utilities on a solid block */}
           <div className="flex items-center gap-3 bg-navy px-4 sm:gap-6 sm:px-8">
             <button
               ref={searchButton}
