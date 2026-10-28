@@ -22,8 +22,8 @@ export function ButtonLink({ variant = 'green', className = '', arrow = true, si
   return (
     <Link
       {...props}
-      className={`group inline-flex items-center gap-3 rounded-[3px] font-extrabold uppercase tracking-[0.12em] transition-colors duration-300 ${
-        size === 'md' ? 'px-6 py-4 text-[0.8rem]' : 'px-4 py-2.5 text-[0.7rem]'
+      className={`group inline-flex items-center gap-3 rounded-[3px] font-display font-bold uppercase tracking-[0.08em] transition-colors duration-300 ${
+        size === 'md' ? 'px-7 py-3.5 text-[1.15rem]' : 'px-5 py-2.5 text-[1rem]'
       } ${VARIANTS[variant]} ${className}`}
     >
       <span>{children}</span>
@@ -52,7 +52,7 @@ export function SubmitButton({ children, disabled, className = '' }: { children:
     <button
       type="submit"
       disabled={disabled}
-      className={`inline-flex items-center justify-center gap-3 rounded-[3px] bg-navy px-7 py-4 text-[0.8rem] font-extrabold uppercase tracking-[0.12em] text-white transition-colors duration-300 hover:bg-teal disabled:cursor-not-allowed disabled:opacity-60 ${className}`}
+      className={`inline-flex items-center justify-center gap-3 rounded-[3px] bg-navy px-8 py-3.5 font-display text-[1.15rem] font-bold uppercase tracking-[0.08em] text-white transition-colors duration-300 hover:bg-teal disabled:cursor-not-allowed disabled:opacity-60 ${className}`}
     >
       {children}
     </button>

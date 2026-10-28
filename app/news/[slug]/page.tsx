@@ -66,7 +66,7 @@ export default async function ArticlePage({ params }: PageProps<'/news/[slug]'>)
             <nav aria-label="Breadcrumb" className="mt-5 text-xs font-bold uppercase tracking-[0.16em] text-white/55">
               <Link href="/" className="hover:text-green">Home</Link> / <Link href="/news" className="hover:text-green">News</Link>
             </nav>
-            <h1 className="display mt-10 max-w-5xl text-[clamp(2rem,5.4vw,4.6rem)] !leading-[0.98]">{article.title}</h1>
+            <h1 className="display mt-10 max-w-5xl text-[clamp(2.8rem,6.4vw,5.6rem)] !leading-[0.98]">{article.title}</h1>
             <p className="mt-8 text-sm font-bold uppercase tracking-[0.14em] text-white/65">
               <time dateTime={article.isoDate}>{article.date}</time> · {article.author} · {article.readTime}
             </p>

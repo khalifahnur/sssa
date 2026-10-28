@@ -47,7 +47,7 @@ function TicketPanel({ fixture, onBooked }: { fixture: FixtureTicket; onBooked: 
         <QrPass code={reference} />
         <div>
           <p className="text-xs font-extrabold uppercase tracking-label text-green">Pass reserved</p>
-          <p className="display mt-1 text-2xl">{fixture.matchTitle}</p>
+          <p className="display mt-1 text-4xl">{fixture.matchTitle}</p>
           <p className="mt-2 text-sm text-white/70">
             {qty} × match pass · {fixture.dateFormatted} · {fixture.kickoffTime}
           </p>
@@ -110,12 +110,12 @@ export function FixtureBoard() {
           <li key={f.id} id={f.id} className="border-b border-navy/15">
             <div className="grid grid-cols-[auto_1fr] items-center gap-x-6 gap-y-4 py-7 sm:grid-cols-[6rem_1fr_auto] sm:gap-x-10 lg:py-9">
               <time dateTime={f.startsAt} className="text-center leading-none">
-                <span className="display block text-5xl sm:text-6xl">{f.dayNumber}</span>
+                <span className="display block text-6xl sm:text-7xl">{f.dayNumber}</span>
                 <span className="mt-1 block text-[0.65rem] font-extrabold uppercase tracking-label text-green">{f.monthName.slice(0, 3)}</span>
               </time>
               <div>
                 <p className="text-xs font-bold uppercase tracking-[0.14em] opacity-60">{f.competition}</p>
-                <h3 className="display mt-1 text-[clamp(1.35rem,2.6vw,2.2rem)] leading-[1]">{f.matchTitle}</h3>
+                <h3 className="display mt-1 text-[clamp(1.8rem,3.2vw,2.8rem)] leading-[0.98]">{f.matchTitle}</h3>
                 <p className="mt-2 text-sm opacity-70">
                   {f.dayName.charAt(0) + f.dayName.slice(1).toLowerCase()} · {f.kickoffTime} · {f.location}
                 </p>

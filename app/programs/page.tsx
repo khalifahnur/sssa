@@ -12,17 +12,17 @@ import { absoluteUrl, SITE } from '@/lib/site';
 import { ACADEMY_PROGRAMS, HOW_WE_HELP_SERVICES } from '@/data/academyData';
 
 export const metadata: Metadata = pageMetadata({
-  title: 'Programmes — youth, teen, scholar and 1-to-1 football pathways',
+  title: 'Programs — youth, teen, scholar and 1-to-1 football pathways',
   description:
-    'Explore St. Sebastian programmes for ages 8–21: Youth Foundation, Teen Competitive Academy, the Full-Time Pro & Scholar Pathway and bespoke 1-to-1 Elite Mastery coaching.',
+    'Explore St. Sebastian programs for ages 8–21: Youth Foundation, Teen Competitive Academy, the Full-Time Pro & Scholar Pathway and bespoke 1-to-1 Elite Mastery coaching.',
   path: '/programs',
-  keywords: ['youth football programme', 'football academy ages 8-21', 'scholar pathway', '1-to-1 football coaching'],
+  keywords: ['youth football program', 'football academy ages 8-21', 'scholar pathway', '1-to-1 football coaching'],
 });
 
 const listLd = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
-  name: `${SITE.name} programmes`,
+  name: `${SITE.name} programs`,
   itemListElement: ACADEMY_PROGRAMS.map((p, i) => ({
     '@type': 'ListItem',
     position: i + 1,
@@ -40,24 +40,24 @@ const TABS = [
 export default function ProgramsPage() {
   return (
     <>
-      <JsonLd data={[breadcrumbLd([{ name: 'Home', path: '/' }, { name: 'Programmes', path: '/programs' }]), listLd]} />
+      <JsonLd data={[breadcrumbLd([{ name: 'Home', path: '/' }, { name: 'Programs', path: '/programs' }]), listLd]} />
       <PageHero
-        section="Programmes"
-        crumbs={[{ name: 'Home', href: '/' }, { name: 'Programmes' }]}
+        section="Programs"
+        crumbs={[{ name: 'Home', href: '/' }, { name: 'Programs' }]}
         media="youth-match"
         title={
           <>
             A pathway for every <Tail>player</Tail>
           </>
         }
-        intro="From first touches at eight to full-time residency at twenty-one, every programme is built around the same promise: elite football, real education, lasting character."
+        intro="From first touches at eight to full-time residency at twenty-one, every program is built around the same promise: elite football, real education, lasting character."
       />
       <SubNav label="On this page" tabs={TABS} />
 
       <section id="browse" aria-labelledby="browse-heading" className="bg-white py-16 lg:py-24">
         <div className="gutter wrap">
           <h2 id="browse-heading" className="sr-only">
-            Browse programmes
+            Browse programs
           </h2>
           <ProgramBrowser />
         </div>
@@ -73,7 +73,7 @@ export default function ProgramsPage() {
             {HOW_WE_HELP_SERVICES.map((s, i) => (
               <li key={s.id} className={`reveal reveal-${i + 1} border-t-[3px] border-navy pt-6`}>
                 <p className="text-xs font-extrabold uppercase tracking-label text-green">0{i + 1}</p>
-                <h3 className="display mt-3 text-2xl leading-[1]">{s.title}</h3>
+                <h3 className="display mt-3 text-4xl leading-[0.95]">{s.title}</h3>
                 <p className="mt-2 text-sm font-bold uppercase tracking-[0.1em] text-teal">{s.subtitle}</p>
                 <p className="mt-4 opacity-75">{s.description}</p>
               </li>
@@ -85,7 +85,7 @@ export default function ProgramsPage() {
         </div>
       </section>
 
-      <CtaBand title="Find your fit" body="Not sure which programme suits your athlete? Tell us about their position, experience and goals and we will point you in the right direction." cta="Talk to admissions" />
+      <CtaBand title="Find your fit" body="Not sure which program suits your athlete? Tell us about their position, experience and goals and we will point you in the right direction." cta="Talk to admissions" />
     </>
   );
 }

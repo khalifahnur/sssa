@@ -1,7 +1,9 @@
 'use client';
 
 import { useRef } from 'react';
+import { ArrowDown } from 'lucide-react';
 import { gsap, useGSAP } from '@/lib/gsap';
+import { scrollToId } from '@/lib/scroll';
 import { CldVideo } from '@/components/media/CldVideo';
 import { Range } from '@/components/brand/Range';
 import { ButtonLink } from '@/components/ui/Button';
@@ -9,9 +11,9 @@ import { INSTITUTIONAL_METRICS } from '@/data/academyData';
 
 /**
  * Pinned, scroll-scrubbed opening scene (GSAP + ScrollTrigger).
- *   1. A framed video window opens to full bleed while the headline lifts away.
- *   2. A second statement rises over the footage as two mountain ranges climb the frame.
- *   3. The navy ridge swallows the screen, handing off seamlessly to the mission section.
+ *   At rest   A full-bleed, darkened video with a monumental title and a scroll button.
+ *   Scrolling The title lifts away and the darkness clears so the footage comes to life, then a second statement
+ *             rises as two mountain ranges climb the frame, and the navy ridge hands off to the next section.
  * Visitors who prefer reduced motion get the static first frame.
  */
 export function HeroPinned() {
@@ -41,18 +43,15 @@ export function HeroPinned() {
         tl.to('[data-hero-line]', { yPercent: -115, stagger: 0.05, duration: 0.55, ease: 'power2.in' }, 0)
           // Explicit start values: the CSS intro animation is still holding opacity at 0 when this timeline is created
           .fromTo('[data-hero-fade]', { autoAlpha: 1, y: 0 }, { autoAlpha: 0, y: -40, duration: 0.4 }, 0)
-          .to(
-            '[data-hero-window]',
-            { '--hw-t': '0%', '--hw-r': '0%', '--hw-b': '0%', '--hw-l': '0%', '--hw-radius': '0px', duration: 1, ease: 'power2.inOut' },
-            0
-          )
-          .fromTo('[data-hero-video]', { scale: 1.22 }, { scale: 1, duration: 1.6 }, 0)
-          .to('[data-hero-dim]', { opacity: 0.62, duration: 1 }, 0.2)
+          // The video "appears": it settles from a slow zoom while the darkness over it clears
+          .fromTo('[data-hero-video]', { scale: 1.18 }, { scale: 1, duration: 1.6 }, 0)
+          .to('[data-hero-dim]', { opacity: 0.08, duration: 0.7, ease: 'power1.out' }, 0.05)
+          .to('[data-hero-dim]', { opacity: 0.5, duration: 0.5, ease: 'power1.inOut' }, 0.95)
           .fromTo(
             '[data-hero-statement] > *',
             { autoAlpha: 0, yPercent: 60 },
             { autoAlpha: 1, yPercent: 0, stagger: 0.12, duration: 0.5, ease: 'power3.out' },
-            0.85
+            0.9
           )
           .fromTo('[data-mtn-back]', { y: 0 }, { y: () => -window.innerHeight * 0.66, duration: 1.2 }, 0.8)
           .fromTo('[data-mtn-front]', { y: 0 }, { y: () => -window.innerHeight * 0.74, duration: 1.1 }, 1.05)
@@ -68,28 +67,28 @@ export function HeroPinned() {
 
   return (
     <div ref={root}>
-      <section ref={scene} aria-label="Introduction" className="relative h-svh min-h-[34rem] overflow-hidden bg-navy text-white">
-        {/* Video, revealed through a clip-path window that GSAP opens up */}
-        <div data-hero-window className="hero-window intro-window absolute inset-0 will-change-[clip-path]">
+      <section ref={scene} aria-label="Introduction" className="relative h-svh min-h-[34rem] overflow-hidden bg-navy-deep text-white">
+        {/* Full-bleed footage, darkened at rest */}
+        <div className="intro-window absolute inset-0">
           <div data-hero-video className="absolute inset-0">
             <CldVideo media="hero-reel" className="absolute inset-0 h-full w-full" />
           </div>
-          <div data-hero-dim className="absolute inset-0 bg-navy opacity-20" />
-          <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-navy/70 via-transparent to-transparent" />
+          <div data-hero-dim className="absolute inset-0 bg-navy-deep opacity-[0.58]" />
+          <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-navy-deep/60 via-transparent to-navy-deep/55" />
         </div>
 
-        {/* Opening headline */}
-        <div className="gutter wrap relative z-10 flex h-full flex-col justify-start pt-[calc(var(--header-h)+1.75rem)] lg:justify-center lg:pt-[var(--header-h)]">
-          <p data-hero-fade className="intro-fade text-[0.7rem] font-extrabold uppercase tracking-label text-green sm:text-xs">
-            Football · Academics · Character
+        {/* Monumental title */}
+        <div className="gutter relative z-10 flex h-full flex-col justify-center pb-16 pt-[var(--header-h)]">
+          <p data-hero-fade className="intro-fade text-sm font-extrabold uppercase tracking-label text-green sm:text-base">
+            St. Sebastian Sports Academy
           </p>
-          <h1 className="display text-hero mt-3 leading-[0.86]">
-            <span className="block overflow-hidden pb-[0.06em]">
+          <h1 className="display mt-2 text-[clamp(5.5rem,15.5vw,16rem)] leading-[0.82]">
+            <span className="block overflow-hidden pb-[0.05em]">
               <span data-hero-line className="block">
                 <span className="intro-up block [animation-delay:150ms]">Champions</span>
               </span>
             </span>
-            <span className="block overflow-hidden pb-[0.06em]">
+            <span className="block overflow-hidden pb-[0.05em]">
               <span data-hero-line className="block">
                 <span className="intro-up block [animation-delay:280ms]">
                   for life<span className="text-green">.</span>
@@ -97,50 +96,46 @@ export function HeroPinned() {
               </span>
             </span>
           </h1>
+        </div>
 
-          <div data-hero-fade className="intro-fade mt-6 hidden [animation-delay:600ms] lg:block">
-            <p className="max-w-md text-lg leading-relaxed text-white/80 [@media(max-height:820px)]:hidden">
-              St. Sebastian turns aspiration into achievement. World-class football, transformative academics and the character to lead.
-            </p>
-            <div className="mt-8 flex gap-3 [@media(max-height:820px)]:mt-6">
+        {/* Metrics */}
+        <dl
+          data-hero-fade
+          className="intro-fade absolute bottom-6 left-[clamp(1.25rem,5vw,4.5rem)] z-10 hidden items-end gap-10 [animation-delay:700ms] sm:flex lg:gap-14"
+        >
+          {INSTITUTIONAL_METRICS.map((m) => (
+            <div key={m.label} className="border-l-[3px] border-green pl-4">
+              <dd className="display text-5xl text-white lg:text-6xl">{m.value}</dd>
+              <dt className="mt-1 text-[0.65rem] font-bold uppercase tracking-label text-white/65">{m.label}</dt>
+            </div>
+          ))}
+        </dl>
+
+        {/* Scroll button: stem + circle, bottom centre */}
+        <div data-hero-fade className="intro-fade absolute bottom-5 left-1/2 z-20 flex -translate-x-1/2 flex-col items-center [animation-delay:900ms]">
+          <span aria-hidden="true" className="pointer-events-none -mb-3 h-8 w-[1.5px] bg-white" />
+          <button
+            type="button"
+            onClick={() => scrollToId('mission')}
+            aria-label="Scroll down to our mission and vision"
+            className="flex h-12 w-12 items-center justify-center rounded-full border-[1.5px] border-white bg-navy-deep/40 text-white transition-colors hover:border-green hover:bg-green hover:text-navy"
+          >
+            <ArrowDown className="h-5 w-5" strokeWidth={2} />
+          </button>
+        </div>
+
+        {/* Statement that rises over the footage */}
+        <div className="gutter pointer-events-none absolute inset-0 z-50 flex items-center">
+          <div data-hero-statement>
+            <p className="invisible display text-[clamp(3.4rem,10vw,9.5rem)]">Elite football.</p>
+            <p className="invisible display text-[clamp(3.4rem,10vw,9.5rem)] text-green">Real education.</p>
+            <p className="invisible display text-[clamp(3.4rem,10vw,9.5rem)]">Lifelong leaders.</p>
+            <div className="pointer-events-auto invisible mt-8 flex flex-wrap gap-3">
               <ButtonLink href="/admissions#trial">Book a trial</ButtonLink>
               <ButtonLink href="/programs" variant="ghost-light">
-                Explore programmes
+                Explore programs
               </ButtonLink>
             </div>
-          </div>
-
-          <dl
-            data-hero-fade
-            className="intro-fade absolute bottom-6 left-[clamp(1.25rem,5vw,4.5rem)] right-[clamp(1.25rem,5vw,4.5rem)] z-10 flex items-end justify-between gap-4 lg:right-auto lg:justify-start lg:gap-12"
-          >
-            {INSTITUTIONAL_METRICS.map((m) => (
-              <div key={m.label}>
-                <dd className="display text-3xl text-white sm:text-5xl">{m.value}</dd>
-                <dt className="mt-1 text-[0.62rem] font-bold uppercase tracking-label text-white/60 sm:text-xs">{m.label}</dt>
-              </div>
-            ))}
-          </dl>
-        </div>
-
-        {/* Scroll cue */}
-        <div
-          data-hero-fade
-          aria-hidden="true"
-          className="intro-fade absolute bottom-6 right-[clamp(1.25rem,5vw,4.5rem)] z-10 hidden flex-col items-center gap-3 [animation-delay:900ms] lg:flex"
-        >
-          <span className="text-[0.62rem] font-extrabold uppercase tracking-label text-white/70 [writing-mode:vertical-rl]">Scroll</span>
-          <span className="relative h-14 w-px overflow-hidden bg-white/25">
-            <span className="scroll-cue absolute inset-x-0 top-0 h-1/2 bg-green" />
-          </span>
-        </div>
-
-        {/* Statement that rises over the full-bleed footage */}
-        <div className="gutter wrap pointer-events-none absolute inset-0 z-50 flex items-center">
-          <div data-hero-statement>
-            <p className="invisible display text-[clamp(2.4rem,7vw,6.6rem)]">Elite football.</p>
-            <p className="invisible display text-[clamp(2.4rem,7vw,6.6rem)] text-green">Real education.</p>
-            <p className="invisible display text-[clamp(2.4rem,7vw,6.6rem)]">Lifelong leaders.</p>
           </div>
         </div>
 

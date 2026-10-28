@@ -22,7 +22,7 @@ export async function submitTrialRequest(input: TrialRequestInput): Promise<Acti
   if (!valid) return { ok: false, errors: errors as Record<string, string> };
 
   const program = ACADEMY_PROGRAMS.find((p) => p.id === input.programId);
-  if (!program) return { ok: false, errors: { programId: 'Please select a training programme.' } };
+  if (!program) return { ok: false, errors: { programId: 'Please select a training program.' } };
 
   const reference = `TRIAL-${input.athleteAge}Y-${token()}`;
   await deliver('trial', { reference, ...input, program: program.title });
