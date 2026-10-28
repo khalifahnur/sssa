@@ -10,6 +10,7 @@ import { Peak } from '@/components/brand/Peak';
 import { ButtonLink } from '@/components/ui/Button';
 import { lockScroll, scrollToId } from '@/lib/scroll';
 import { ACADEMY_PROGRAMS, BLOG_UPDATES } from '@/data/academyData';
+import Image from 'next/image';
 
 type Panel = 'menu' | 'search';
 
@@ -63,8 +64,6 @@ export function SiteHeader() {
 
   const results = useMemo(() => search(query), [query]);
   const toggle = (next: Panel) => setOpen(panel === next ? null : { panel: next, path: pathname });
-
-  // Same-page links never change the pathname, so close the panel here and glide to the #section
   const stayOnPage = (href: string) => {
     const [path, hash] = href.split('#');
     if ((path || pathname) !== pathname) return false;
@@ -108,7 +107,7 @@ export function SiteHeader() {
         data-open={panel ? '' : undefined}
         className={`fixed inset-x-0 top-0 z-50 h-[var(--header-h)] text-white ${isHome ? 'home-header' : 'bg-navy shadow-[0_6px_24px_rgba(5,10,20,0.3)]'}`}
       >
-        <span className="scroll-progress absolute inset-x-0 bottom-0 z-10 h-[3px] origin-left bg-green" aria-hidden="true" />
+        {/* <span className="scroll-progress absolute inset-x-0 bottom-0 z-10 h-[3px] origin-left bg-green" aria-hidden="true" /> */}
         <div className="relative flex h-full items-stretch justify-between">
           <div className="flex items-stretch">
             <button
@@ -132,7 +131,8 @@ export function SiteHeader() {
             aria-label="St. Sebastian Sports Academy — home"
             className="group absolute left-1/2 top-0 flex h-full w-[5.75rem] -translate-x-1/2 items-center justify-center bg-navy sm:w-[7.5rem]"
           >
-            <Crest variant="green" height={58} className="transition-transform duration-300 group-hover:scale-105" />
+            {/* <Crest variant="green" height={58} className="transition-transform duration-300 group-hover:scale-105" /> */}
+            <Image src={'/sssa.png'} alt='sssa logo' width={60} height={60}/>
           </Link>
 
           <div className="flex items-stretch gap-1 bg-navy pl-2 pr-3 sm:gap-3 sm:pl-5 sm:pr-8">
