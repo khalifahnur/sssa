@@ -20,6 +20,11 @@ white **sub-navigation** (62 px) that pins beneath the main header while you scr
 main header starts transparent over the hero and turns solid as you scroll (a CSS scroll-driven animation). The sub-nav tabs jump to sections of the
 current page and follow your position (`components/layout/SubNav.tsx`, `lib/scroll.ts`).
 
+The **menu** and **search** open as white, full-width panels beneath the main header, and the button that opened a panel turns white so it joins it
+(`components/layout/SiteHeader.tsx`). The menu lists the four main destinations (Home, The academy, Programs, Admissions) in large condensed type with a
+"Register for a trial" button, and carries the brand peak up its right edge. Search (also Ctrl/Cmd + K) filters pages, programs, fixtures and news as you
+type, with the peak at the bottom right. Links to the page you are already on close the panel and glide to the section.
+
 ## Home page
 
 Sections, in order (the sub-navigation tabs jump between the first four): **Hero** (full-bleed darkened footage, monumental title; scrolling
