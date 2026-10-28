@@ -70,6 +70,7 @@ export default async function ProgramPage({ params }: PageProps<'/programs/[slug
           ]),
         ]}
       />
+      <SubNav label="On this page" tabs={TABS} first />
       <PageHero
         section={program.categoryLabel}
         crumbs={[{ name: 'Home', href: '/' }, { name: 'Programs', href: '/programs' }, { name: program.title }]}
@@ -79,7 +80,6 @@ export default async function ProgramPage({ params }: PageProps<'/programs/[slug
       >
         <ButtonLink href={`/admissions?program=${program.slug}#trial`}>Apply for a trial</ButtonLink>
       </PageHero>
-      <SubNav label="On this page" tabs={TABS} />
 
       <section id="facts" aria-label="Program facts" className="bg-white">
         <dl className="gutter wrap grid gap-8 py-12 sm:grid-cols-3 lg:py-16">

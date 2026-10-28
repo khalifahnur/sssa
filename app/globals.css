@@ -113,6 +113,7 @@ input[type="search"]::-webkit-search-decoration {
 @keyframes header-solid { to { background-color: var(--color-navy); box-shadow: 0 8px 28px rgb(5 10 20 / 0.35); } }
 @keyframes fade-out { to { opacity: 0; } }
 @keyframes card-drift { from { translate: -6% 0; } to { translate: 6% 0; } }
+@keyframes film-open { from { clip-path: inset(0 9% round 28px); } to { clip-path: inset(0 0 0 round 0); } }
 
 /* Home header: solid navy by default. Where scroll-driven animation is available it starts transparent over the hero. */
 .home-header { background-color: var(--color-navy); }
@@ -150,6 +151,12 @@ input[type="search"]::-webkit-search-decoration {
     .card-drift {
       animation: card-drift linear both;
       animation-timeline: view(inline);
+    }
+    /* The film band opens from an inset, rounded window to full bleed as it scrolls into view */
+    .film-open {
+      animation: film-open linear both;
+      animation-timeline: view();
+      animation-range: entry 4% cover 36%;
     }
     .reveal {
       animation: reveal-up var(--ease-out-expo) both;

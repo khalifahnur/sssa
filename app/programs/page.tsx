@@ -41,10 +41,11 @@ export default function ProgramsPage() {
   return (
     <>
       <JsonLd data={[breadcrumbLd([{ name: 'Home', path: '/' }, { name: 'Programs', path: '/programs' }]), listLd]} />
+      <SubNav label="On this page" tabs={TABS} first />
       <PageHero
         section="Programs"
         crumbs={[{ name: 'Home', href: '/' }, { name: 'Programs' }]}
-        media="youth-match"
+        media="programs-backdrop"
         title={
           <>
             A pathway for every <Tail>player</Tail>
@@ -52,7 +53,6 @@ export default function ProgramsPage() {
         }
         intro="From first touches at eight to full-time residency at twenty-one, every program is built around the same promise: elite football, real education, lasting character."
       />
-      <SubNav label="On this page" tabs={TABS} />
 
       <section id="browse" aria-labelledby="browse-heading" className="bg-white py-16 lg:py-24">
         <div className="gutter wrap">

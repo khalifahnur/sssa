@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import type { ComponentProps } from 'react';
 
-type Variant = 'green' | 'navy' | 'light' | 'ghost-light' | 'ghost-dark';
+type Variant = 'green' | 'navy' | 'light' | 'ghost-light' | 'ghost-dark' | 'outline-dark' | 'outline-light';
 
 const VARIANTS: Record<Variant, string> = {
   green: 'bg-green text-navy hover:bg-white',
@@ -9,6 +9,9 @@ const VARIANTS: Record<Variant, string> = {
   light: 'bg-white text-navy hover:bg-green',
   'ghost-light': 'border-2 border-white/40 text-white hover:border-green hover:text-green',
   'ghost-dark': 'border-2 border-navy/25 text-navy hover:border-navy hover:bg-navy hover:text-white',
+  /** Thin square outline, as used for "Discover more" */
+  'outline-dark': 'border border-navy text-navy hover:bg-navy hover:text-white',
+  'outline-light': 'border border-white text-white hover:bg-white hover:text-navy',
 };
 
 interface ButtonLinkProps extends Omit<ComponentProps<typeof Link>, 'className'> {

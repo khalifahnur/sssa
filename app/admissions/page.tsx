@@ -49,10 +49,11 @@ export default function AdmissionsPage() {
   return (
     <>
       <JsonLd data={[breadcrumbLd([{ name: 'Home', path: '/' }, { name: 'Admissions', path: '/admissions' }]), faqLd]} />
+      <SubNav label="On this page" tabs={TABS} first />
       <PageHero
         section="Admissions"
         crumbs={[{ name: 'Home', href: '/' }, { name: 'Admissions' }]}
-        media="scholars-library"
+        media="project-banner"
         title={
           <>
             Your place on the <Tail>team</Tail>
@@ -60,7 +61,6 @@ export default function AdmissionsPage() {
         }
         intro="Book a trial evaluation, ask about a program, or simply say hello. The admissions team replies to every enquiry."
       />
-      <SubNav label="On this page" tabs={TABS} />
 
       <section id="how-it-works" aria-labelledby="steps-heading" className="bg-white py-20 lg:py-28">
         <div className="gutter wrap">

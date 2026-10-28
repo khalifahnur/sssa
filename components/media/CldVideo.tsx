@@ -4,20 +4,21 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { cldVideoPoster, cldVideoSources, resolveSource } from '@/lib/cloudinary';
 import { MEDIA, type MediaKey } from '@/data/media';
 import { CldImage } from './CldImage';
-import { MediaFallback } from './MediaFallback';
 
 interface CldVideoProps {
   media: MediaKey;
   className?: string;
   /** Show player controls (for clips people choose to watch) instead of looping silently in the background */
   controls?: boolean;
+  /** Start playing as soon as it mounts (used for the film dialog, opened by a click) */
+  autoPlay?: boolean;
 }
 
 /**
  * Cloudinary video. As a background it loops silently, plays only while on screen, and stays on the
  * poster frame for visitors who prefer reduced motion. Slots that hold an image render that image instead.
  */
-export function CldVideo({ media, className = '', controls = false }: CldVideoProps) {
+export function CldVideo({ media, className = '', controls = false, autoPlay = false }: CldVideoProps) {
   const ref = useRef<HTMLVideoElement>(null);
   const [failed, setFailed] = useState(false);
   const asset = MEDIA[media];
@@ -46,17 +47,18 @@ export function CldVideo({ media, className = '', controls = false }: CldVideoPr
     return <CldImage media={media} decorative={background} className={className} sizes="100vw" priority={background} />;
   }
   if (!source || failed) {
-    return <MediaFallback label={asset.alt} decorative={background} className={className} />;
+    // No playable video: show the slot's still image instead (its poster, local fallback or placeholder)
+    return <CldImage media={media} decorative={background} className={className} sizes="100vw" priority={background} />;
   }
 
   const sources = cldVideoSources(source);
   return (
     <video
       ref={ref}
-      className={`object-cover ${className}`}
+      className={`${controls ? 'object-contain' : 'object-cover'} ${className}`}
       style={asset.focus ? { objectPosition: asset.focus } : undefined}
       poster={cldVideoPoster(source)}
-      autoPlay={background}
+      autoPlay={background || autoPlay}
       muted={background}
       loop={background}
       controls={controls}

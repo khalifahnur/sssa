@@ -7,7 +7,6 @@ import { scrollToId } from '@/lib/scroll';
 import { CldVideo } from '@/components/media/CldVideo';
 import { Range } from '@/components/brand/Range';
 import { ButtonLink } from '@/components/ui/Button';
-import { INSTITUTIONAL_METRICS } from '@/data/academyData';
 
 /**
  * Pinned, scroll-scrubbed opening scene (GSAP + ScrollTrigger).
@@ -78,11 +77,11 @@ export function HeroPinned() {
         </div>
 
         {/* Monumental title */}
-        <div className="gutter relative z-10 flex h-full flex-col justify-center pb-16 pt-[var(--header-h)]">
+        <div className="gutter relative z-10 flex h-full flex-col justify-center pb-12 pt-[var(--header-h)]">
           <p data-hero-fade className="intro-fade text-sm font-extrabold uppercase tracking-label text-green sm:text-base">
             St. Sebastian Sports Academy
           </p>
-          <h1 className="display mt-2 text-[clamp(5.5rem,15.5vw,16rem)] leading-[0.82]">
+          <h1 className="display mt-2 text-[clamp(5rem,12.5vw,13.5rem)] leading-[0.84]">
             <span className="block overflow-hidden pb-[0.05em]">
               <span data-hero-line className="block">
                 <span className="intro-up block [animation-delay:150ms]">Champions</span>
@@ -98,26 +97,13 @@ export function HeroPinned() {
           </h1>
         </div>
 
-        {/* Metrics */}
-        <dl
-          data-hero-fade
-          className="intro-fade absolute bottom-6 left-[clamp(1.25rem,5vw,4.5rem)] z-10 hidden items-end gap-10 [animation-delay:700ms] sm:flex lg:gap-14"
-        >
-          {INSTITUTIONAL_METRICS.map((m) => (
-            <div key={m.label} className="border-l-[3px] border-green pl-4">
-              <dd className="display text-5xl text-white lg:text-6xl">{m.value}</dd>
-              <dt className="mt-1 text-[0.65rem] font-bold uppercase tracking-label text-white/65">{m.label}</dt>
-            </div>
-          ))}
-        </dl>
-
         {/* Scroll button: stem + circle, bottom centre */}
         <div data-hero-fade className="intro-fade absolute bottom-5 left-1/2 z-20 flex -translate-x-1/2 flex-col items-center [animation-delay:900ms]">
           <span aria-hidden="true" className="pointer-events-none -mb-3 h-8 w-[1.5px] bg-white" />
           <button
             type="button"
-            onClick={() => scrollToId('mission')}
-            aria-label="Scroll down to our mission and vision"
+            onClick={() => scrollToId('project')}
+            aria-label="Scroll down to the project"
             className="flex h-12 w-12 items-center justify-center rounded-full border-[1.5px] border-white bg-navy-deep/40 text-white transition-colors hover:border-green hover:bg-green hover:text-navy"
           >
             <ArrowDown className="h-5 w-5" strokeWidth={2} />

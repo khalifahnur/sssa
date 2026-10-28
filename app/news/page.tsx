@@ -20,6 +20,7 @@ export default function NewsPage() {
     <>
       <JsonLd data={breadcrumbLd([{ name: 'Home', path: '/' }, { name: 'News', path: '/news' }])} />
       <PageHero
+        clearHeader
         section="News"
         crumbs={[{ name: 'Home', href: '/' }, { name: 'News' }]}
         title={
