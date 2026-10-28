@@ -69,19 +69,19 @@ export function ProgramBrowser() {
               transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
               className="border-b border-navy/15"
             >
-              <Link href={`/programs/${p.slug}`} className="group grid gap-6 py-8 lg:grid-cols-[4rem_1.1fr_1fr_auto] lg:items-center lg:gap-10 lg:py-10">
+              <Link href={`/programs/${p.slug}`} className="group grid gap-6 py-8 lg:grid-cols-[4rem_1fr_17rem_2rem] lg:items-center lg:gap-10 lg:py-10 xl:grid-cols-[4rem_1fr_20rem_2rem]">
                 <span className="display hidden text-4xl text-green lg:block">0{ACADEMY_PROGRAMS.indexOf(p) + 1}</span>
-                <div className="relative aspect-[16/10] overflow-hidden rounded-[4px] lg:order-3 lg:w-56 xl:w-72">
-                  <CldImage media={p.image} sizes="(min-width:1280px) 18rem, (min-width:1024px) 14rem, 100vw" className="h-full w-full transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-110" />
-                </div>
-                <div>
+                <div className="lg:order-2">
                   <p className="text-xs font-extrabold uppercase tracking-label text-green">
                     {p.categoryLabel} · {p.ageRange}
                   </p>
                   <h3 className="display mt-2 text-[clamp(1.6rem,3vw,2.6rem)] leading-[0.98]">{p.title}</h3>
+                  <p className="mt-3 max-w-xl text-[0.95rem] leading-relaxed opacity-75">{p.summary}</p>
                 </div>
-                <p className="max-w-md text-[0.95rem] leading-relaxed opacity-75 lg:order-4 lg:hidden xl:block">{p.summary}</p>
-                <span aria-hidden="true" className="hidden text-3xl transition-transform duration-300 group-hover:translate-x-2 lg:order-5 lg:block">
+                <div className="relative aspect-[16/10] overflow-hidden rounded-[4px] lg:order-3">
+                  <CldImage media={p.image} sizes="(min-width:1280px) 20rem, (min-width:1024px) 17rem, 100vw" className="h-full w-full transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover:scale-110" />
+                </div>
+                <span aria-hidden="true" className="hidden text-3xl transition-transform duration-300 group-hover:translate-x-2 lg:order-4 lg:block">
                   →
                 </span>
               </Link>

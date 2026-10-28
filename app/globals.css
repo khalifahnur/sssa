@@ -25,12 +25,6 @@
   --breakpoint-xs: 30rem;
 }
 
-@property --hdr {
-  syntax: "<length>";
-  inherits: true;
-  initial-value: 84px;
-}
-
 /* Hero window clip, animated by GSAP (see components/home/HeroPinned.tsx) */
 @property --hw-t { syntax: "<percentage>"; inherits: false; initial-value: 44%; }
 @property --hw-r { syntax: "<percentage>"; inherits: false; initial-value: 6%; }
@@ -38,11 +32,22 @@
 @property --hw-l { syntax: "<percentage>"; inherits: false; initial-value: 6%; }
 @property --hw-radius { syntax: "<length>"; inherits: false; initial-value: 20px; }
 
-/* Height of the fixed header at rest; first sections add it as top padding */
-:root { --header-h: 84px; }
+/* Two stacked bars: the fixed main header, then the page sub-navigation that pins beneath it.
+   Kept as plain pixel values so GSAP can read them (see lib/scroll.ts). */
+:root {
+  --header-h: 64px;
+  --subnav-h: 56px;
+  --stack-h: 120px;
+}
+@media (max-width: 639px) {
+  :root {
+    --subnav-h: 48px;
+    --stack-h: 112px;
+  }
+}
 
 html {
-  scroll-padding-top: calc(var(--hdr) + 1rem);
+  scroll-padding-top: calc(var(--stack-h) + 1rem);
   -webkit-text-size-adjust: 100%;
 }
 
@@ -63,10 +68,19 @@ body {
 
 ::selection { background: var(--color-green); color: var(--color-navy); }
 
-:focus-visible {
-  outline: 3px solid var(--color-green);
-  outline-offset: 3px;
-  border-radius: 2px;
+/* In the base layer so utilities such as `outline-none` can override it where a container draws its own focus ring */
+@layer base {
+  :focus-visible {
+    outline: 3px solid var(--color-green);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 /* ---------- Typography ---------- */
@@ -84,17 +98,15 @@ body {
 @utility tracking-label { letter-spacing: 0.18em; }
 @utility outline-text {
   color: transparent;
-  -webkit-text-stroke: 2px currentColor;
+  -webkit-text-stroke: 2px var(--stroke, #fff);
+  paint-order: stroke fill;
 }
 
 /* ---------- Layout ---------- */
 @utility gutter { padding-inline: clamp(1.25rem, 5vw, 4.5rem); }
 @utility wrap { width: 100%; max-width: 88rem; margin-inline: auto; }
 
-/* ---------- Header: shrinks with scroll (CSS scroll-driven) ---------- */
-.site-header { --hdr: 84px; height: var(--hdr); }
-
-@keyframes shrink-header { to { --hdr: 64px; } }
+/* ---------- Scroll-driven keyframes ---------- */
 @keyframes bar-grow { from { scale: 0 1; } to { scale: 1 1; } }
 @keyframes reveal-up { from { opacity: 0; translate: 0 2.25rem; } to { opacity: 1; translate: 0 0; } }
 @keyframes reveal-fade { from { opacity: 0; } to { opacity: 1; } }
@@ -105,11 +117,6 @@ body {
 /* Native CSS scroll-driven animations. Progressive enhancement: unsupported browsers simply show the final state. */
 @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) {
-    .site-header {
-      animation: shrink-header linear both;
-      animation-timeline: scroll(root);
-      animation-range: 0 160px;
-    }
     .scroll-progress {
       animation: bar-grow linear both;
       animation-timeline: scroll(root);
@@ -146,13 +153,31 @@ body {
   }
 }
 
+/* ---------- Hero intro (plays once on load; separate elements from the scroll-scrubbed ones) ---------- */
+@keyframes intro-up { from { translate: 0 108%; } to { translate: 0 0; } }
+@keyframes intro-fade { from { opacity: 0; translate: 0 14px; } to { opacity: 1; translate: 0 0; } }
+@keyframes intro-window { from { opacity: 0; scale: 1.06; } to { opacity: 1; scale: 1; } }
+@keyframes cue { 0% { translate: 0 -100%; } 100% { translate: 0 200%; } }
+/* `backwards` (not `both`): once finished, the animation lets go so GSAP's inline opacity/transform can take over on scroll */
+.intro-up { animation: intro-up 1.15s var(--ease-out-expo) backwards; }
+.intro-fade { animation: intro-fade 0.9s var(--ease-out-expo) 0.45s backwards; }
+.intro-window { animation: intro-window 1.4s var(--ease-out-expo) 0.2s backwards; }
+.scroll-cue { animation: cue 1.8s ease-in-out infinite; }
+
 /* ---------- Hero window ---------- */
 .hero-window {
   clip-path: inset(var(--hw-t) var(--hw-r) var(--hw-b) var(--hw-l) round var(--hw-radius));
 }
 @media (min-width: 1024px) {
-  .hero-window { --hw-t: 15%; --hw-r: 4%; --hw-b: 13%; --hw-l: 52%; --hw-radius: 28px; }
+  .hero-window { --hw-t: 13%; --hw-r: 4%; --hw-b: 18%; --hw-l: 55%; --hw-radius: 28px; }
 }
+
+/* ---------- Marquee ---------- */
+@keyframes marquee {
+  to { translate: -50% 0; }
+}
+.marquee { animation: marquee 38s linear infinite; }
+.group:hover .marquee { animation-play-state: paused; }
 
 /* ---------- Misc ---------- */
 .no-scrollbar::-webkit-scrollbar { display: none; }

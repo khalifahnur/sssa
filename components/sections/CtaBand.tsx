@@ -15,7 +15,7 @@ export function CtaBand({
   href?: string;
 }) {
   return (
-    <section aria-labelledby="cta-heading" className="relative isolate overflow-hidden bg-navy text-white">
+    <section id="join" aria-labelledby="cta-heading" className="relative isolate overflow-hidden bg-navy text-white">
       <Peak className="absolute -right-10 top-0 -z-10 h-full w-[60%] text-teal/70 lg:w-[34%]" />
       <div className="gutter wrap py-28 lg:py-40">
         <h2 id="cta-heading" className="display text-hero max-w-5xl">

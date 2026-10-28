@@ -7,7 +7,7 @@ import { BLOG_UPDATES } from '@/data/academyData';
 export function NewsPreview() {
   const [lead, ...rest] = BLOG_UPDATES;
   return (
-    <section aria-labelledby="news-heading" className="bg-white py-24 lg:py-32">
+    <section id="news" aria-labelledby="news-heading" className="bg-white py-24 lg:py-32">
       <div className="gutter wrap">
         <SectionHeader title="News" section="Latest" />
         <div className="mt-10 flex flex-col justify-between gap-6 sm:flex-row sm:items-end">

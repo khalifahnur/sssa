@@ -6,6 +6,7 @@ import { Tail } from '@/components/brand/Marks';
 import { FixtureBoard } from '@/components/sections/FixtureBoard';
 import { HighlightGallery } from '@/components/sections/HighlightGallery';
 import { CtaBand } from '@/components/sections/CtaBand';
+import { SubNav } from '@/components/layout/SubNav';
 import { breadcrumbLd, pageMetadata } from '@/lib/seo';
 import { absoluteUrl, SITE } from '@/lib/site';
 import { UPCOMING_FIXTURES } from '@/data/academyData';
@@ -37,6 +38,12 @@ const eventsLd = UPCOMING_FIXTURES.map((f) => ({
   },
 }));
 
+const TABS = [
+  { id: 'tickets', label: 'Fixtures' },
+  { id: 'highlights', label: 'Highlights' },
+  { id: 'join', label: 'Join' },
+];
+
 export default function FixturesPage() {
   return (
     <>
@@ -52,8 +59,9 @@ export default function FixturesPage() {
         }
         intro="Watch the next generation compete. Reserve your passes for the upcoming showcase fixtures and cheer on the squad."
       />
+      <SubNav label="On this page" tabs={TABS} />
 
-      <section aria-labelledby="tickets-heading" className="bg-white py-16 lg:py-24">
+      <section id="tickets" aria-labelledby="tickets-heading" className="bg-white py-16 lg:py-24">
         <div className="gutter wrap">
           <h2 id="tickets-heading" className="display text-lg-display mb-10">
             Upcoming fixtures
@@ -62,7 +70,7 @@ export default function FixturesPage() {
         </div>
       </section>
 
-      <section aria-labelledby="highlights-heading" className="bg-navy py-20 text-white lg:py-32">
+      <section id="highlights" aria-labelledby="highlights-heading" className="bg-navy py-20 text-white lg:py-32">
         <div className="gutter wrap">
           <SectionHeader title="Highlights" section="Match centre" />
           <h2 id="highlights-heading" className="display text-mega mt-10 mb-14 max-w-4xl">
