@@ -13,8 +13,8 @@ export const SITE = {
 export const NAV_LINKS = [
   { href: '/academy', label: 'Academy' },
   { href: '/programs', label: 'Programs' },
-  { href: '/fixtures', label: 'Fixtures' },
-  { href: '/news', label: 'News' },
+  //{ href: '/fixtures', label: 'Fixtures' },
+  // { href: '/news', label: 'News' },
   { href: '/admissions', label: 'Admissions' },
 ] as const;
 
@@ -22,7 +22,6 @@ export function absoluteUrl(path = '/') {
   return `${SITE.url}${path.startsWith('/') ? path : `/${path}`}`;
 }
 
-/** Sentence-case helper for data that is stored in capitals. */
 export function sentenceCase(value: string) {
   const lower = value.toLowerCase();
   return lower.charAt(0).toUpperCase() + lower.slice(1);

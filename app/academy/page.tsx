@@ -22,9 +22,9 @@ export const metadata: Metadata = pageMetadata({
 const TABS = [
   { id: 'essence', label: 'Essence' },
   { id: 'pillars', label: 'Pillars' },
-  { id: 'campus', label: 'Campus' },
+ // { id: 'campus', label: 'Campus' },
   { id: 'voice', label: 'Voice' },
-  { id: 'legacy', label: 'Legacy' },
+  //{ id: 'legacy', label: 'Legacy' },
 ];
 
 const crumbs = [{ name: 'Home', href: '/' }, { name: 'The Academy' }];
@@ -34,13 +34,13 @@ export default function AcademyPage() {
     <>
       <JsonLd data={breadcrumbLd([{ name: 'Home', path: '/' }, { name: 'The Academy', path: '/academy' }])} />
       <SubNav label="On this page" tabs={TABS} first />
-      <PageHero
-        section="The Academy"
+      {/* <PageHero
+        section=""
         crumbs={crumbs}
         media="campus-wide"
         title={
           <>
-            Where dreams become <Tail>reality</Tail>
+            Where dreams become reality
           </>
         }
         intro={INSTITUTIONAL_HERO_COPY.mission}
@@ -49,15 +49,14 @@ export default function AcademyPage() {
         <ButtonLink href="/programs" variant="ghost-light">
           Programs
         </ButtonLink>
-      </PageHero>
+      </PageHero> */}
 
-      {/* Essence + promise (Guidelines p.7) */}
-      <section id="essence" aria-labelledby="essence-heading" className="bg-white py-20 lg:py-32">
+      <section id="essence" aria-labelledby="essence-heading" className="bg-white py-10 lg:py-15">
         <div className="gutter wrap grid gap-16 lg:grid-cols-[0.8fr_1.2fr]">
           <h2 id="essence-heading" className="display text-xl-display text-green reveal">
             Brand
             <br />
-            <Tail>essence</Tail>
+            essence
           </h2>
           <div className="reveal reveal-2 space-y-6 text-lg leading-relaxed lg:text-xl">
             <p>
@@ -68,9 +67,7 @@ export default function AcademyPage() {
             </p>
           </div>
           <h2 className="display text-xl-display text-green reveal">
-            Brand
-            <br />
-            <Tail>promise</Tail>
+           
           </h2>
           <div className="reveal reveal-2">
             <p className="display text-[clamp(3.4rem,9vw,8rem)] text-green">Champions for life</p>
@@ -81,12 +78,11 @@ export default function AcademyPage() {
         </div>
       </section>
 
-      {/* Three pillars, each with a sticky image */}
       <section id="pillars" aria-labelledby="pillars-heading" className="bg-mist py-20 lg:py-32">
         <div className="gutter wrap">
-          <SectionHeader title="How it works" section="Three pillars" />
+          
           <h2 id="pillars-heading" className="display text-mega mt-10 max-w-4xl">
-            One academy, three ways in <Slash />
+            One academy, two ways in 
           </h2>
           <div className="mt-16 space-y-24 lg:mt-24 lg:space-y-40">
             {CORE_ACADEMY_PILLARS.map((pillar, i) => (
@@ -117,8 +113,7 @@ export default function AcademyPage() {
         </div>
       </section>
 
-      {/* Campus */}
-      <section id="campus" aria-labelledby="campus-heading" className="bg-navy py-20 text-white lg:py-32">
+      {/* <section id="campus" aria-labelledby="campus-heading" className="bg-navy py-20 text-white lg:py-32">
         <div className="gutter wrap">
           <SectionHeader title="Campus" section="Facilities" />
           <h2 id="campus-heading" className="display text-mega mt-10 max-w-4xl">
@@ -145,13 +140,12 @@ export default function AcademyPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
-      {/* Voice (Guidelines p.6) */}
       <section id="voice" aria-labelledby="voice-heading" className="bg-green py-20 text-navy lg:py-32">
         <div className="gutter wrap grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">
           <h2 id="voice-heading" className="display text-xl-display [--slash:var(--color-navy)]">
-            How we <Tail>speak</Tail>
+            How we speak
           </h2>
           <ul className="divide-y-[3px] divide-navy/90 border-y-[3px] border-navy/90">
             {BRAND_VOICE.map((v) => (
@@ -164,7 +158,7 @@ export default function AcademyPage() {
         </div>
       </section>
 
-      <PathwayTimeline />
+      {/* <PathwayTimeline /> */}
       <CtaBand />
     </>
   );

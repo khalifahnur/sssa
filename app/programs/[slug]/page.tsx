@@ -96,7 +96,7 @@ export default async function ProgramPage({ params }: PageProps<'/programs/[slug
         <div className="gutter wrap grid gap-14 lg:grid-cols-[0.8fr_1.2fr]">
           <div className="lg:sticky lg:top-[calc(var(--stack-h)+1.5rem)] lg:self-start">
             <h2 id="syllabus-heading" className="display text-xl-display">
-              What you will <Tail>learn</Tail>
+              What you will learn
             </h2>
             <p className="mt-6 max-w-sm opacity-75">The program syllabus, session by session.</p>
           </div>
@@ -114,7 +114,7 @@ export default async function ProgramPage({ params }: PageProps<'/programs/[slug
       <section id="outcome" aria-labelledby="outcome-heading" className="bg-teal py-20 text-white lg:py-28">
         <div className="gutter wrap grid items-center gap-10 lg:grid-cols-[0.6fr_1.4fr]">
           <h2 id="outcome-heading" className="display text-xl-display text-green">
-            The <Tail>outcome</Tail>
+            The outcome
           </h2>
           <p className="reveal text-[clamp(1.5rem,3vw,2.5rem)] font-bold leading-[1.2]">{program.outcomes}</p>
         </div>

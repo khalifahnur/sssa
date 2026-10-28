@@ -67,7 +67,6 @@ export function HeroPinned() {
   return (
     <div ref={root}>
       <section ref={scene} aria-label="Introduction" className="relative h-svh min-h-[34rem] overflow-hidden bg-navy-deep text-white">
-        {/* Full-bleed footage, darkened at rest */}
         <div className="intro-window absolute inset-0">
           <div data-hero-video className="absolute inset-0">
             <CldVideo media="hero-reel" className="absolute inset-0 h-full w-full" />
@@ -76,11 +75,7 @@ export function HeroPinned() {
           <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-navy-deep/60 via-transparent to-navy-deep/55" />
         </div>
 
-        {/* Monumental title */}
         <div className="gutter relative z-10 flex h-full flex-col justify-center pb-12 pt-[var(--header-h)]">
-          <p data-hero-fade className="intro-fade text-sm font-extrabold uppercase tracking-label text-green sm:text-base">
-            St. Sebastian Sports Academy
-          </p>
           <h1 className="display mt-2 text-[clamp(5rem,12.5vw,13.5rem)] leading-[0.84]">
             <span className="block overflow-hidden pb-[0.05em]">
               <span data-hero-line className="block">
@@ -97,7 +92,6 @@ export function HeroPinned() {
           </h1>
         </div>
 
-        {/* Scroll button: stem + circle, bottom centre */}
         <div data-hero-fade className="intro-fade absolute bottom-5 left-1/2 z-20 flex -translate-x-1/2 flex-col items-center [animation-delay:900ms]">
           <span aria-hidden="true" className="pointer-events-none -mb-3 h-8 w-[1.5px] bg-white" />
           <button
@@ -110,7 +104,6 @@ export function HeroPinned() {
           </button>
         </div>
 
-        {/* Statement that rises over the footage */}
         <div className="gutter pointer-events-none absolute inset-0 z-50 flex items-center">
           <div data-hero-statement>
             <p className="invisible display text-[clamp(3.4rem,10vw,9.5rem)]">Elite football.</p>
@@ -125,7 +118,6 @@ export function HeroPinned() {
           </div>
         </div>
 
-        {/* Mountain ranges climbing the frame. Each is a ridge plus a solid block below it, parked off-screen. */}
         <div data-mtn-back aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-full z-30">
           <Range fill="#1f4b50" facet="#88b03f" facetOpacity={0.35} profile={0} className="h-[56svh]" />
           <div className="h-[130svh] bg-teal" />

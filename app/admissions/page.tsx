@@ -33,7 +33,7 @@ const STEPS = [
 
 const FAQS = [
   { q: 'Which age groups can apply?', a: `We run programs from ages 8 to 21: ${ACADEMY_PROGRAMS.map((p) => `${p.title} (${p.ageRange})`).join('; ')}.` },
-  { q: 'Is education part of every program?', a: 'Our teen and scholar programs integrate academic tutoring and accredited coursework alongside football. The Full-Time Pro & Scholar Pathway combines daily training with college-preparatory academics.' },
+  //{ q: 'Is education part of every program?', a: 'Our teen and scholar programs integrate academic tutoring and accredited coursework alongside football. The Full-Time Pro & Scholar Pathway combines daily training with college-preparatory academics.' },
   { q: 'What is the coach-to-athlete ratio?', a: 'Ratios range from 1:10 in the Teen Competitive Academy to 1:8 for Youth, 1:6 for the Scholar Pathway and 1:1 for Elite Mastery sessions.' },
   { q: 'How do I book a trial?', a: 'Complete the trial request form on this page. The admissions team will contact you to arrange an evaluation date.' },
   { q: 'Where is the academy?', a: BRAND_CONTACT.address },
@@ -50,7 +50,7 @@ export default function AdmissionsPage() {
     <>
       <JsonLd data={[breadcrumbLd([{ name: 'Home', path: '/' }, { name: 'Admissions', path: '/admissions' }]), faqLd]} />
       <SubNav label="On this page" tabs={TABS} first />
-      <PageHero
+      {/* <PageHero
         section="Admissions"
         crumbs={[{ name: 'Home', href: '/' }, { name: 'Admissions' }]}
         media="project-banner"
@@ -60,12 +60,12 @@ export default function AdmissionsPage() {
           </>
         }
         intro="Book a trial evaluation, ask about a program, or simply say hello. The admissions team replies to every enquiry."
-      />
+      /> */}
 
-      <section id="how-it-works" aria-labelledby="steps-heading" className="bg-white py-20 lg:py-28">
+      <section id="how-it-works" aria-labelledby="steps-heading" className="bg-white py-10 lg:py-12">
         <div className="gutter wrap">
           <h2 id="steps-heading" className="display text-xl-display">
-            How it <Tail>works</Tail>
+            How it works
           </h2>
           <ol className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {STEPS.map((s, i) => (
@@ -82,9 +82,8 @@ export default function AdmissionsPage() {
       <section id="trial" aria-labelledby="trial-heading" className="bg-mist py-20 lg:py-32">
         <div className="gutter wrap grid gap-16 lg:grid-cols-[1.4fr_0.8fr]">
           <div>
-            <SectionHeader title="Trial request" section="Apply" />
             <h2 id="trial-heading" className="display text-mega mt-10 mb-12">
-              Request a <Tail>trial</Tail>
+              Request a trial
             </h2>
             <Suspense fallback={<div className="h-96 animate-pulse bg-navy/5" aria-hidden="true" />}>
               <TrialForm />
@@ -116,7 +115,7 @@ export default function AdmissionsPage() {
         </div>
       </section>
 
-      <section id="stories" aria-labelledby="voices-heading" className="bg-teal py-20 text-white lg:py-32">
+      {/* <section id="stories" aria-labelledby="voices-heading" className="bg-teal py-20 text-white lg:py-32">
         <div className="gutter wrap">
           <h2 id="voices-heading" className="display text-xl-display">
             In their <Tail>words</Tail>
@@ -134,7 +133,7 @@ export default function AdmissionsPage() {
             ))}
           </ul>
         </div>
-      </section>
+      </section> */}
 
       <section id="faq" aria-labelledby="faq-heading" className="bg-white py-20 lg:py-32">
         <div className="gutter wrap grid gap-12 lg:grid-cols-[0.7fr_1.3fr]">

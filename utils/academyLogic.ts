@@ -3,7 +3,6 @@ import {
   AcademyProgram,
   FixtureTicket,
   ProgramCategory,
-  UPCOMING_FIXTURES,
 } from '../data/academyData';
 
 export interface TrialRequestInput {
@@ -178,6 +177,3 @@ export function getDefaultPrograms(): AcademyProgram[] {
   return ACADEMY_PROGRAMS;
 }
 
-export function getDefaultFixtures(): FixtureTicket[] {
-  return UPCOMING_FIXTURES;
-}

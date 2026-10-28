@@ -6,7 +6,6 @@ import { Tail } from '@/components/brand/Marks';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { LEGACY_TIMELINE } from '@/data/academyData';
 
-/** Four milestones joined by a line that draws itself with scroll (Framer Motion useScroll + useSpring). */
 export function PathwayTimeline() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start 65%', 'end 55%'] });

@@ -84,13 +84,13 @@ export interface BlogArticle {
 export const BRAND_CONTACT = {
   name: 'St. Sebastian Sports Academy',
   slogan: 'Champions for Life',
-  address: '800 Park Offices Drive, Suite 3322, Research Triangle Park, NC 27713',
-  email: 'chiara.canzi@sebastian.org',
+  address: 'Kabarnet road,Nairobi',
+  email: 'sssafc@stsebastiansportsacademy.com',
   brandEmail: 'brand@sebastian.org',
-  phone: '+1 (434) 249-5930',
-  principal: 'Chiara Canzi',
-  headCoach: 'Alonso D. Dowson',
-  foundedYear: 1985,
+  phone: '+254 184 1243 161',
+  // principal: 'Chiara Canzi',
+  // headCoach: 'Alonso D. Dowson',
+  foundedYear: 2025,
 };
 
 export const SPIRIT_TABS = {
@@ -168,7 +168,6 @@ export const FOUNDATION_PILLARS: FoundationPillar[] = [
   },
 ];
 
-/** Brand values, word-for-word from the Brand Guidelines (p.5), paired with the proof point for each. */
 export const BRAND_VALUES = [
   {
     id: 'people-centred',
@@ -196,7 +195,6 @@ export const BRAND_VALUES = [
   },
 ] as const;
 
-/** Brand voice (Guidelines p.6). */
 export const BRAND_VOICE = [
   { name: 'Aspirational', line: 'We inspire young athletes to pursue excellence.' },
   { name: 'Supportive', line: 'We nurture growth with encouragement and belief.' },
@@ -209,10 +207,10 @@ export const ACADEMY_PROGRAMS: AcademyProgram[] = [
   {
     id: 'prog-youth',
     slug: 'youth-foundation',
-    title: 'Youth Foundation Programs',
+    title: 'Discover Phase',
     category: 'youth',
     categoryLabel: 'Youth',
-    ageRange: 'Ages 8–12',
+    ageRange: 'Ages 5-8',
     schedule: 'Mon / Wed / Fri · 4:00 PM – 6:00 PM',
     summary:
       'Introduces young players to technical ball mastery, bilateral coordination, spatial awareness, and joyful small-sided teamwork in a supportive environment.',
@@ -229,10 +227,10 @@ export const ACADEMY_PROGRAMS: AcademyProgram[] = [
   {
     id: 'prog-teen',
     slug: 'teen-competitive',
-    title: 'Teen Competitive Academy',
+    title: 'Skill Aquisition Phase',
     category: 'teen',
     categoryLabel: 'Teen',
-    ageRange: 'Ages 13–16',
+    ageRange: 'Ages 8-12',
     schedule: 'Tue / Thu / Sat · 4:30 PM – 7:00 PM',
     summary:
       'Refines high-speed technical execution, tactical phase play, positional versatility, and athletic conditioning for regional and national youth leagues.',
@@ -244,15 +242,15 @@ export const ACADEMY_PROGRAMS: AcademyProgram[] = [
       'Video analysis classroom sessions using pro match footage',
       'Integrated academic tutoring and PSAT/SAT scholar preparation',
     ],
-    outcomes: '86% of U16 players earn selection to regional talent ID centers or full-time U18 scholar residencies.',
+    outcomes: '86% of U15 players earn selection to regional talent ID centers or full-time U18 scholar residencies.',
   },
   {
     id: 'prog-scholar',
     slug: 'scholar-pathway',
-    title: 'Full-Time Pro & Scholar Pathway',
+    title: 'Game Training Phase',
     category: 'scholar',
     categoryLabel: 'Scholar',
-    ageRange: 'Ages 17–21',
+    ageRange: 'Ages 13-15',
     schedule: 'Mon – Sat · Full-Day Residency & Academic Track',
     summary:
       'Our flagship dual-pathway combining daily professional football training, UEFA-licensed coaching, and accredited college-prep academics for aspiring pros.',
@@ -261,30 +259,10 @@ export const ACADEMY_PROGRAMS: AcademyProgram[] = [
     syllabus: [
       'Morning technical/tactical pitch sessions + afternoon accredited academic classes',
       'Direct showcase fixtures against MLS Next, USL, and European partner academies',
-      'NCAA Division I recruitment portfolio management & highlight reel production',
+      'recruitment portfolio management & highlight reel production',
       'Sports psychology, media training, and leadership certification',
     ],
-    outcomes: '98% placement into NCAA Division I/II scholarships or professional club contracts since 2018.',
-  },
-  {
-    id: 'prog-specialist',
-    slug: 'elite-one-to-one',
-    title: 'Special 1-2-1 Elite Mastery',
-    category: 'specialist',
-    categoryLabel: '1-to-1 Specialist',
-    ageRange: 'Ages 10–21',
-    schedule: 'Flexible By Appointment · 90-Min Intensive',
-    summary:
-      'Bespoke individual coaching tailored to position-specific mechanics—striker finishing, central midfield scanning, modern fullback overlapping, or goalkeeper distribution.',
-    image: 'player-strike',
-    coachRatio: '1:1 Ratio',
-    syllabus: [
-      'High-speed biomechanics video breakdown of shooting and passing technique',
-      'Position-specific cognitive scanning drills with light-reaction pods',
-      'Custom 6-week home technical & strength conditioning blueprint',
-      'Written performance evaluation from Head Coach Alonso D. Dowson',
-    ],
-    outcomes: 'Measurable +28% improvement in weak-foot pass completion and shot accuracy within 8 sessions.',
+    outcomes: '98% placement into scholarships or professional club contracts.',
   },
 ];
 
@@ -315,146 +293,7 @@ export const HOW_WE_HELP_SERVICES = [
   },
 ];
 
-export const UPCOMING_FIXTURES: FixtureTicket[] = [
-  {
-    id: 'fix-1',
-    homeTeam: 'ST. SEBASTIAN FC',
-    awayTeam: 'JUVENTA FC ACADEMY',
-    matchTitle: 'ST. SEBASTIAN VS JUVENTA FC',
-    startsAt: '2026-11-14T15:00:00-05:00',
-    dateFormatted: 'NOV 14, 2026',
-    dayName: 'SATURDAY',
-    dayNumber: '14',
-    monthName: 'NOVEMBER',
-    kickoffTime: '15:00 EST',
-    location: 'RTP STADIUM PITCH 1, NC',
-    competition: 'PREMIER ACADEMY SHOWCASE',
-    price: 15,
-    seatsRemaining: 42,
-    image: 'blog-tackle',
-    ticketCode: 'STSEB-2026-JUV14',
-  },
-  {
-    id: 'fix-2',
-    homeTeam: 'ST. SEBASTIAN FC',
-    awayTeam: 'MELBA CLUB U19',
-    matchTitle: 'ST. SEBASTIAN VS MELBA CLUB',
-    startsAt: '2026-11-21T17:30:00-05:00',
-    dateFormatted: 'NOV 21, 2026',
-    dayName: 'SATURDAY',
-    dayNumber: '21',
-    monthName: 'NOVEMBER',
-    kickoffTime: '17:30 EST',
-    location: 'ST. SEBASTIAN MAIN ARENA',
-    competition: 'ATLANTIC SCHOLAR CUP',
-    price: 20,
-    seatsRemaining: 19,
-    image: 'blog-volley',
-    ticketCode: 'STSEB-2026-MEL21',
-  },
-  {
-    id: 'fix-3',
-    homeTeam: 'ST. SEBASTIAN FC',
-    awayTeam: 'THUNDER FC ELITE',
-    matchTitle: 'ST. SEBASTIAN VS THUNDER FC',
-    startsAt: '2026-12-05T14:00:00-05:00',
-    dateFormatted: 'DEC 05, 2026',
-    dayName: 'SATURDAY',
-    dayNumber: '05',
-    monthName: 'DECEMBER',
-    kickoffTime: '14:00 EST',
-    location: 'RTP STADIUM PITCH 1, NC',
-    competition: 'NATIONAL SCOUT INVITATIONAL',
-    price: 25,
-    seatsRemaining: 28,
-    image: 'player-strike',
-    ticketCode: 'STSEB-2026-THU05',
-  },
-];
 
-export const TRENDING_HIGHLIGHTS: HighlightClip[] = [
-  {
-    id: 'hl-1',
-    title: 'ST. SEBASTIAN U18 VS JUVENTA FC — HIGH PRESS CLINIC',
-    date: 'OCTOBER 18, 2026',
-    location: 'RESEARCH TRIANGLE PARK, NC',
-    duration: '04:18',
-    category: 'Tactical Breakdown',
-    image: 'highlight-1',
-    tacticalNotes:
-      'Watch how our midfield diamond triggers a coordinated 6-second counter-press in the attacking third, leading to two first-half goals.',
-    keyStats: [
-      { label: 'PPDA (Pressing Intensity)', value: '6.4' },
-      { label: 'High Turnovers Won', value: '14' },
-      { label: 'Pass Completion', value: '89%' },
-    ],
-  },
-  {
-    id: 'hl-2',
-    title: 'PENALTY SHOOTOUT HEROICS — GOALKEEPER ACADEMY SHOWCASE',
-    date: 'OCTOBER 11, 2026',
-    location: 'ST. SEBASTIAN ARENA',
-    duration: '03:45',
-    category: 'Goalkeeping',
-    image: 'highlight-2',
-    tacticalNotes:
-      'U19 Scholar goalkeeper Marcus Vance demonstrates explosive footwork and top-corner extension saves during the Regional Cup quarter-final.',
-    keyStats: [
-      { label: 'Saves Made', value: '8' },
-      { label: 'Penalty Stops', value: '2 / 3' },
-      { label: 'Distribution Accuracy', value: '91%' },
-    ],
-  },
-  {
-    id: 'hl-main',
-    title: 'CHAMPIONS CUP FINAL: ST. SEBASTIAN 3–1 MELBA CLUB',
-    date: 'OCTOBER 24, 2026',
-    location: 'MAIN STADIUM, NC',
-    duration: '08:12',
-    category: 'Full Match Highlight',
-    image: 'match-highlight-main',
-    featured: true,
-    tacticalNotes:
-      'Complete extended highlights from our U19 Scholars championship victory. Featuring captain Rahim Khan’s 25-yard curling strike and the post-match trophy presentation.',
-    keyStats: [
-      { label: 'Expected Goals (xG)', value: '2.84 vs 0.71' },
-      { label: 'Possession', value: '64%' },
-      { label: 'Distance Covered (Team)', value: '118.4 km' },
-    ],
-  },
-  {
-    id: 'hl-3',
-    title: '90TH-MINUTE WINNER & SQUAD CELEBRATION WITH SUPPORTERS',
-    date: 'OCTOBER 04, 2026',
-    location: 'RTP STADIUM PITCH 1',
-    duration: '02:54',
-    category: 'Match Moment',
-    image: 'highlight-3',
-    tacticalNotes:
-      'A 14-pass build-up from our own penalty box culminates in a stoppage-time winner, showcasing the composure and tenacity taught across every age group.',
-    keyStats: [
-      { label: 'Build-up Passes', value: '14' },
-      { label: 'Sequence Duration', value: '38 sec' },
-      { label: 'Peak Sprint Speed', value: '33.8 km/h' },
-    ],
-  },
-  {
-    id: 'hl-4',
-    title: 'GOLDEN HOUR 1-2-1 TECHNICAL DRIBBLING & FINISHING LAB',
-    date: 'SEPTEMBER 29, 2026',
-    location: 'ACADEMY TRAINING GROUND',
-    duration: '05:20',
-    category: 'Training Inside',
-    image: 'highlight-4',
-    tacticalNotes:
-      'Go inside our evening individual development clinic focusing on close-control body feints,hip mobility, and clinical low-driven finishes.',
-    keyStats: [
-      { label: 'Touches Per Session', value: '850+' },
-      { label: 'Shot Placement Accuracy', value: '84%' },
-      { label: '1v1 Take-On Success', value: '78%' },
-    ],
-  },
-];
 
 export const PLAYER_TESTIMONIALS: PlayerTestimonial[] = [
   {
@@ -559,33 +398,33 @@ export const INSTITUTIONAL_METRICS = [
 ];
 
 export const CORE_ACADEMY_PILLARS = [
+  // {
+  //   number: '01',
+  //   title: 'Full-Time Academy',
+  //   subtitle:
+  //     'Comprehensive residential program combining elite athletics with academic excellence',
+  //   image: 'scholars-campus' as const,
+  //   items: [
+  //     {
+  //       heading: 'RESIDENTIAL LIFE',
+  //       detail: 'Year-round boarding for students aged 11+',
+  //     },
+  //     {
+  //       heading: 'ACADEMICS',
+  //       detail: 'Cambridge Curriculum instruction',
+  //     },
+  //     {
+  //       heading: 'ATHLETICS',
+  //       detail: 'Elite football training & development',
+  //     },
+  //     {
+  //       heading: 'WELLNESS',
+  //       detail: 'Life skills, nutrition & mental health',
+  //     },
+  //   ],
+  // },
   {
     number: '01',
-    title: 'Full-Time Academy',
-    subtitle:
-      'Comprehensive residential program combining elite athletics with academic excellence',
-    image: 'scholars-campus' as const,
-    items: [
-      {
-        heading: 'RESIDENTIAL LIFE',
-        detail: 'Year-round boarding for students aged 11+',
-      },
-      {
-        heading: 'ACADEMICS',
-        detail: 'Cambridge Curriculum instruction',
-      },
-      {
-        heading: 'ATHLETICS',
-        detail: 'Elite football training & development',
-      },
-      {
-        heading: 'WELLNESS',
-        detail: 'Life skills, nutrition & mental health',
-      },
-    ],
-  },
-  {
-    number: '02',
     title: 'Coaching Camps',
     subtitle: 'Intensive short-term programs during school holidays',
     image: 'youth-kick' as const,
@@ -609,7 +448,7 @@ export const CORE_ACADEMY_PILLARS = [
     ],
   },
   {
-    number: '03',
+    number: '02',
     title: 'Player Pathway',
     subtitle: 'Professional development and transfer opportunities',
     image: 'player-strike' as const,
@@ -626,10 +465,10 @@ export const CORE_ACADEMY_PILLARS = [
         heading: 'INTEGRATION',
         detail: 'FIFA Connect system',
       },
-      {
-        heading: 'REVENUE',
-        detail: '10% sell-on fee structure',
-      },
+      // {
+      //   heading: 'REVENUE',
+      //   detail: '10% sell-on fee structure',
+      // },
     ],
   },
 ];

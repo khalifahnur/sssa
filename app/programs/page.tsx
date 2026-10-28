@@ -16,7 +16,7 @@ export const metadata: Metadata = pageMetadata({
   description:
     'Explore St. Sebastian programs for ages 8–21: Youth Foundation, Teen Competitive Academy, the Full-Time Pro & Scholar Pathway and bespoke 1-to-1 Elite Mastery coaching.',
   path: '/programs',
-  keywords: ['youth football program', 'football academy ages 8-21', 'scholar pathway', '1-to-1 football coaching'],
+  keywords: ['youth football program', 'football academy ages 8-15', 'scholar pathway', '1-to-1 football coaching'],
 });
 
 const listLd = {
@@ -43,15 +43,15 @@ export default function ProgramsPage() {
       <JsonLd data={[breadcrumbLd([{ name: 'Home', path: '/' }, { name: 'Programs', path: '/programs' }]), listLd]} />
       <SubNav label="On this page" tabs={TABS} first />
       <PageHero
-        section="Programs"
+        section=""
         crumbs={[{ name: 'Home', href: '/' }, { name: 'Programs' }]}
         media="programs-backdrop"
         title={
           <>
-            A pathway for every <Tail>player</Tail>
+            A pathway for every player
           </>
         }
-        intro="From first touches at eight to full-time residency at twenty-one, every program is built around the same promise: elite football, real education, lasting character."
+        //intro="From first touches at eight to full-time residency at twenty-one, every program is built around the same promise: elite football, real education, lasting character."
       />
 
       <section id="browse" aria-labelledby="browse-heading" className="bg-white py-16 lg:py-24">
@@ -67,7 +67,7 @@ export default function ProgramsPage() {
         <div className="gutter wrap">
           <SectionHeader title="More ways in" section="Camps & training" />
           <h2 id="help-heading" className="display text-mega mt-10 max-w-3xl">
-            Short on time? <Tail>Start here</Tail>
+            Short on time? Start here
           </h2>
           <ol className="mt-14 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
             {HOW_WE_HELP_SERVICES.map((s, i) => (
