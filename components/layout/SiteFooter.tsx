@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { Crest } from '@/components/brand/Crest';
 import { Range } from '@/components/brand/Range';
-import { Tail } from '@/components/brand/Marks';
 import { NAV_LINKS } from '@/lib/site';
 import { ACADEMY_PROGRAMS, BRAND_CONTACT } from '@/data/academyData';
 
@@ -12,7 +11,7 @@ export function SiteFooter() {
       <div className="gutter wrap pb-10 pt-6">
         <div className="grid gap-14 lg:grid-cols-[1.3fr_1fr_1fr_1.2fr]">
           <div>
-            <Crest variant="green" height={132} />
+            <Crest variant="primary" height={132} />
             <p className="display mt-6 text-5xl text-white">
               Champions for life
             </p>

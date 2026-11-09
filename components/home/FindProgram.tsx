@@ -3,7 +3,7 @@ import { ButtonLink } from '@/components/ui/Button';
 import { PitchIcon } from '@/components/ui/Icons';
 
 const OPTIONS = [
-  { label: 'Book a trial', cta: 'Book now', href: '/admissions#trial', icon: <CalendarCheck className="h-10 w-10" strokeWidth={1.3} /> },
+  { label: 'Book a trial', cta: 'Book now', href: 'https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=ayHaDsgfk0iDUzegbnKX_ue2WRxk7GJHo8WysPdwzdpUNUw4SlM4V01DUllNMkFLQVJVRjVXTVZXQi4u', icon: <CalendarCheck className="h-10 w-10" strokeWidth={1.3} /> },
   { label: 'Browse the programs', cta: 'View all', href: '/programs', icon: <PitchIcon className="h-9 w-12" /> },
   { label: 'Contact us', cta: 'Get in touch', href: '/admissions#faq', icon: <Headset className="h-10 w-10" strokeWidth={1.3} /> },
 ];

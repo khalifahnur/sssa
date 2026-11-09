@@ -84,10 +84,10 @@ export interface BlogArticle {
 export const BRAND_CONTACT = {
   name: 'St. Sebastian Sports Academy',
   slogan: 'Champions for Life',
-  address: 'Kabarnet road,Nairobi',
-  email: 'sssafc@stsebastiansportsacademy.com',
+  address: 'Kabarnet Road, Nairobi',
+  email: 'sssa@stsebastiansportsacademy.com',
   brandEmail: 'brand@sebastian.org',
-  phone: '+254 184 1243 161',
+  phone: '+254 184 143161',
   // principal: 'Chiara Canzi',
   // headCoach: 'Alonso D. Dowson',
   foundedYear: 2025,
