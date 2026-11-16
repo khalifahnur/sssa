@@ -231,7 +231,7 @@ export const ACADEMY_PROGRAMS: AcademyProgram[] = [
     category: 'teen',
     categoryLabel: 'Teen',
     ageRange: 'Ages 9-12',
-    schedule: 'Tue / Thu / Sat · 4:30 PM – 7:00 PM',
+    schedule: 'Mon – Sat · 4:30 PM – 7:00 PM',
     summary:
       'Refines high-speed technical execution, tactical phase play, positional versatility, and athletic conditioning for regional and national youth leagues.',
     image: 'youth-match',
@@ -251,7 +251,7 @@ export const ACADEMY_PROGRAMS: AcademyProgram[] = [
     category: 'scholar',
     categoryLabel: 'Scholar',
     ageRange: 'Ages 13-15',
-    schedule: 'Mon – Sat · Full-Day Residency & Academic Track',
+    schedule: 'Mon – Sat · 4:30 PM – 7:00 PM',
     summary:
       'Our flagship dual-pathway combining daily professional football training, UEFA-licensed coaching, and accredited college-prep academics for aspiring pros.',
     image: 'scholars-library',
