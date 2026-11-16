@@ -218,11 +218,11 @@ export const ACADEMY_PROGRAMS: AcademyProgram[] = [
     coachRatio: '1:8 Ratio',
     syllabus: [
       'First-touch mastery, 1v1 ball manipulation, and weak-foot confidence',
-      'Small-sided 4v4 and 7v7 positional rondos for rapid decision-making',
+      'Small-sided 4v4 positional rondos for rapid decision-making',
       'Agility, balance, coordination (ABC) and injury-prevention movement literacy',
       'Character workshops on teamwork, respect, and growth mindset',
     ],
-    outcomes: 'Graduates transition seamlessly into competitive 11v11 academy squads with elite technical fundamentals.',
+    outcomes: 'Ready to transition from basic ball familiarity to refining technique, spatial awareness, confidence and teamwork',
   },
   {
     id: 'prog-teen',
@@ -230,19 +230,19 @@ export const ACADEMY_PROGRAMS: AcademyProgram[] = [
     title: 'Skill Aquisition Phase',
     category: 'teen',
     categoryLabel: 'Teen',
-    ageRange: 'Ages 8-12',
+    ageRange: 'Ages 9-12',
     schedule: 'Tue / Thu / Sat · 4:30 PM – 7:00 PM',
     summary:
       'Refines high-speed technical execution, tactical phase play, positional versatility, and athletic conditioning for regional and national youth leagues.',
     image: 'youth-match',
     coachRatio: '1:10 Ratio',
     syllabus: [
-      '11v11 tactical periodization: build-up play, high press, and transition triggers',
-      ' Biometric GPS load monitoring and explosive sprint mechanics',
-      'Video analysis classroom sessions using pro match footage',
-      'Integrated academic tutoring and PSAT/SAT scholar preparation',
+      'Advanced ball control and first touch / aerial control ',
+      'Dribbling and 1v1 moves,passing range and support',
+      'Shooting and finishing, volleys, half volleys and curled shots',
+      'Tactical and defensive concept 1v1 and 2v2 defending'
     ],
-    outcomes: '86% of U15 players earn selection to regional talent ID centers or full-time U18 scholar residencies.',
+    outcomes: 'Graduates transition seamlessly into competitive 11v11 academy squads with elite technical fundamentals.'
   },
   {
     id: 'prog-scholar',
@@ -257,12 +257,12 @@ export const ACADEMY_PROGRAMS: AcademyProgram[] = [
     image: 'scholars-library',
     coachRatio: '1:6 Ratio',
     syllabus: [
-      'Morning technical/tactical pitch sessions + afternoon accredited academic classes',
-      'Direct showcase fixtures against MLS Next, USL, and European partner academies',
-      'recruitment portfolio management & highlight reel production',
-      'Sports psychology, media training, and leadership certification',
+      '11v11 tactical periodization: build-up play, high press, and transition triggers',
+      'Biometric GPS load monitoring and explosive sprint mechanics',
+      'Video analysis classroom sessions using pro match footage',
+      'Integrated academic tutoring and PSAT/SAT scholar preparation',
     ],
-    outcomes: '98% placement into scholarships or professional club contracts.',
+    outcomes: '86% of U15 players earn selection to regional talent ID centers or full-time U18 scholar residencies.', //'98% placement into scholarships or professional club contracts.',
   },
 ];
 
