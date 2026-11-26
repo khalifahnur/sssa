@@ -4,7 +4,7 @@ export const SITE = {
   name: BRAND_CONTACT.name,
   shortName: 'St. Sebastian',
   tagline: BRAND_CONTACT.slogan,
-  url: (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://sebastian.org').replace(/\/$/, ''),
+  url: (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.stsebastiansportsacademy.com').replace(/\/$/, ''),
   description:
     'St. Sebastian Sports Academy develops young athletes through world-class football training, transformative academics and character-building values. Champions for Life.',
   locale: 'en_US',
