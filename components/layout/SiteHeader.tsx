@@ -19,6 +19,7 @@ const MENU_PAGES = [
   { href: '/academy', label: 'The academy' },
   { href: '/programs', label: 'Programs' },
   { href: '/admissions', label: 'Admissions' },
+  { href: '/register', label: 'Register' },
 ];
 
 interface SearchEntry {
@@ -34,6 +35,7 @@ const SEARCH_INDEX: SearchEntry[] = [
   { title: 'Fixtures & tickets', href: '/fixtures', kind: 'Page', text: 'matchday highlights video' },
   { title: 'News', href: '/news', kind: 'Page', text: 'stories match reports signings' },
   { title: 'Admissions', href: '/admissions', kind: 'Page', text: 'apply contact faq' },
+  { title: 'Register a player', href: '/register', kind: 'Page', text: 'join pay m-pesa registration fee enrol sign up' },
   { title: 'Book a trial evaluation', href: '/admissions#trial', kind: 'Page', text: 'apply admissions register enquire' },
   ...ACADEMY_PROGRAMS.map((p) => ({ title: p.title, href: `/programs/${p.slug}`, kind: 'Program', text: `${p.ageRange} ${p.categoryLabel} ${p.summary}` })),
   ...BLOG_UPDATES.map((a) => ({ title: a.title, href: `/news/${a.slug}`, kind: 'News', text: `${a.category} ${a.excerpt}` })),

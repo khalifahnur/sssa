@@ -12,7 +12,7 @@ import {
   BRAND_CONTACT,
   PLAYER_TESTIMONIALS,
 } from "@/data/academyData";
-import { SubmitButton } from "@/components/ui/Button";
+import { ButtonLink, SubmitButton } from "@/components/ui/Button";
 
 export const metadata: Metadata = pageMetadata({
   title: "Admissions & contact — book a trial evaluation",
@@ -159,6 +159,12 @@ export default function AdmissionsPage() {
                   Request A Trial
                 </a>
               </button>
+              <p className="mt-10 max-w-md text-navy/75">
+                Ready to join? Register your player now and pay the registration fee by M-Pesa.
+              </p>
+              <ButtonLink href="/register" variant="green" className="mt-4">
+                Register now
+              </ButtonLink>
             </Suspense>
           </div>
           <aside
